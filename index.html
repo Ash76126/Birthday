@@ -12,12 +12,15 @@
       color: #fff;
       font-family: 'Courier New', monospace;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
     }
 
     .countdown {
       font-size: 8rem;
-      text-align: center;
-      margin-top: 20vh;
       animation: pop 0.5s ease-in-out forwards;
     }
 
@@ -27,39 +30,37 @@
     }
 
     .celebrate {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-color: black;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      background: #000;
     }
 
-    .message h1, .message h2 {
-      margin: 0;
-      text-align: center;
+    .line {
+      font-size: 3rem;
       color: #ff69b4;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 3px solid #fff;
+      border-right: 3px solid white;
     }
 
-    .message h1 {
-      font-size: 2.8rem;
+    .line1 {
       width: 0;
-      animation: typing1 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+      animation: typing1 3s steps(20, end) forwards, blink 0.75s step-end infinite;
     }
 
-    .message h2 {
-      font-size: 2.2rem;
+    .line2 {
       width: 0;
       animation: typing2 3s steps(20, end) 3s forwards, blink 0.75s step-end infinite;
     }
 
     @keyframes typing1 {
       from { width: 0; }
-      to { width: 400px; }
+      to { width: 320px; }
     }
 
     @keyframes typing2 {
@@ -74,13 +75,14 @@
 
     .firework {
       position: absolute;
-      font-size: 4rem;
-      animation: explode 1s ease-out forwards;
+      font-size: 5rem;
+      animation: explode 1.2s ease-out forwards;
+      pointer-events: none;
     }
 
     @keyframes explode {
-      0% { transform: scale(0.3); opacity: 1; }
-      100% { transform: scale(2.5); opacity: 0; }
+      0% { transform: scale(0.4); opacity: 1; }
+      100% { transform: scale(3); opacity: 0; }
     }
   </style>
 </head>
@@ -89,10 +91,8 @@
   <div id="countdown" class="countdown">5</div>
 
   <div class="celebrate" id="celebrate">
-    <div class="message">
-      <h1 id="line1">Happy Birthday</h1>
-      <h2 id="line2">Bugguuu! 🎉</h2>
-    </div>
+    <div class="line line1">Happy Birthday</div>
+    <div class="line line2">Bugguuu 🎉</div>
   </div>
 
   <script>
@@ -105,24 +105,26 @@
       if (count === 0) {
         clearInterval(interval);
         countdownEl.style.display = "none";
-        triggerCelebration();
+        showCelebration();
       } else {
         countdownEl.textContent = count;
         countdownEl.style.animation = "none";
-        void countdownEl.offsetWidth; // Force reflow
+        void countdownEl.offsetWidth;
         countdownEl.style.animation = "pop 0.5s ease-in-out";
       }
     }, 1000);
 
-    function triggerCelebration() {
+    function showCelebration() {
       celebrateEl.style.display = "flex";
 
-      // Fireworks from corners
+      // FIREWORKS!
       const positions = [
-        { top: "10px", left: "10px" },
-        { top: "10px", right: "10px" },
-        { bottom: "10px", left: "10px" },
-        { bottom: "10px", right: "10px" }
+        { top: "20px", left: "20px" },
+        { top: "20px", right: "20px" },
+        { bottom: "20px", left: "20px" },
+        { bottom: "20px", right: "20px" },
+        { top: "50%", left: "10%" },
+        { top: "50%", right: "10%" },
       ];
 
       positions.forEach(pos => {
@@ -131,15 +133,15 @@
         fw.textContent = "🎆";
         Object.assign(fw.style, pos);
         celebrateEl.appendChild(fw);
-
-        setTimeout(() => fw.remove(), 1000);
+        setTimeout(() => fw.remove(), 1200);
       });
 
       // Redirect after 7 seconds
       setTimeout(() => {
-        window.location.href = 'page2.html';
+        window.location.href = "page2.html";
       }, 7000);
     }
   </script>
+
 </body>
 </html>
