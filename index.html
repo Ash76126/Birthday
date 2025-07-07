@@ -36,19 +36,35 @@
       flex-direction: column;
     }
 
-    .message {
-      font-size: 2rem;
+    .message h1, .message h2 {
+      margin: 0;
+      text-align: center;
       color: #ff69b4;
       white-space: nowrap;
       overflow: hidden;
       border-right: 3px solid #fff;
-      width: 0;
-      animation: typing 4s steps(30, end) forwards, blink 0.75s step-end infinite;
     }
 
-    @keyframes typing {
+    .message h1 {
+      font-size: 2.8rem;
+      width: 0;
+      animation: typing1 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    .message h2 {
+      font-size: 2.2rem;
+      width: 0;
+      animation: typing2 3s steps(20, end) 3s forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing1 {
       from { width: 0; }
       to { width: 400px; }
+    }
+
+    @keyframes typing2 {
+      from { width: 0; }
+      to { width: 300px; }
     }
 
     @keyframes blink {
@@ -58,19 +74,13 @@
 
     .firework {
       position: absolute;
-      font-size: 2.5rem;
+      font-size: 4rem;
       animation: explode 1s ease-out forwards;
     }
 
     @keyframes explode {
-      0% {
-        transform: scale(0.3);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(2);
-        opacity: 0;
-      }
+      0% { transform: scale(0.3); opacity: 1; }
+      100% { transform: scale(2.5); opacity: 0; }
     }
   </style>
 </head>
@@ -79,14 +89,16 @@
   <div id="countdown" class="countdown">5</div>
 
   <div class="celebrate" id="celebrate">
-    <div class="message" id="message">Happy Birthday Bugguuu! 🎉</div>
+    <div class="message">
+      <h1 id="line1">Happy Birthday</h1>
+      <h2 id="line2">Bugguuu! 🎉</h2>
+    </div>
   </div>
 
   <script>
     let count = 5;
     const countdownEl = document.getElementById("countdown");
     const celebrateEl = document.getElementById("celebrate");
-    const messageEl = document.getElementById("message");
 
     const interval = setInterval(() => {
       count--;
@@ -120,15 +132,13 @@
         Object.assign(fw.style, pos);
         celebrateEl.appendChild(fw);
 
-        setTimeout(() => {
-          fw.remove();
-        }, 1000);
+        setTimeout(() => fw.remove(), 1000);
       });
 
-      // Optional: Redirect to page2.html after 6 seconds
-      // setTimeout(() => {
-      //   window.location.href = 'page2.html';
-      // }, 6000);
+      // Redirect after 7 seconds
+      setTimeout(() => {
+        window.location.href = 'page2.html';
+      }, 7000);
     }
   </script>
 </body>
