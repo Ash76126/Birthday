@@ -1,0 +1,54 @@
+/* style.css */
+
+/* Page 1 & common styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ffcee4, #f8b500);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+}
+
+.card h1 {
+  margin-bottom: 0.5rem;
+  color: #d6336c;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.message {
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+button {
+  background: #d6336c;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  transform: scale(1.05);
+}
