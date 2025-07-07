@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Final Message</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page3-body">
+  <div class="letter-card">
+    <div class="ribbon">Final Message 💔</div>
+    <div class="message-box">
+      <p><strong>Somya,</strong></p>
+      <p>Hate me as much as you can, chahe jitna bhi rude bol lo — I still remember the old Somya.</p>
+      <p>I miss you so muchhh.</p>
+      <p>Har subah yaad aati thi jab VC karti thi classes jaane se pehle...</p>
+      <p class="custom-line">Shayad hum wapas kabhi na ho, par woh yaadein meri zindagi ka sabse pyaara hissa rahengi 💔</p>
+    </div>
+    <button onclick="window.location.href='index.html'">Restart</button>
+  </div>
+
+  <script>
+    // Falling hearts
+    for (let i = 0; i < 35; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+      heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
