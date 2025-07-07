@@ -1,43 +1,45 @@
-/* style.css */
-
-/* Page 1 & common styles */
-body {
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Global Reset & Font */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
+  box-sizing: border-box;
+}
+body {
+  overflow: hidden;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Page 1: Hero Card */
+body.page1 {
   background: linear-gradient(135deg, #ffcee4, #f8b500);
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.9);
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   max-width: 400px;
   width: 90%;
 }
-
 .card h1 {
-  margin-bottom: 0.5rem;
-  color: #d6336c;
   font-size: 2.5rem;
+  color: #d6336c;
+  margin-bottom: 0.5rem;
 }
-
 .subtitle {
   font-style: italic;
   margin-bottom: 1rem;
 }
-
 .message {
   margin: 1rem 0;
   line-height: 1.5;
 }
-
 button {
   background: #d6336c;
   color: #fff;
@@ -46,36 +48,37 @@ button {
   font-size: 1rem;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-
 button:hover {
   transform: scale(1.05);
 }
 
-/* Page 2: Confetti hearts and layout */
-
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Page 2: Celebration Card */
+body.page2 {
+  height: 100vh;
+}
 .celebrate-card {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(135deg, #ffafbd, #ffc3a0);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
   text-align: center;
+  overflow: hidden;
 }
-
 .celebrate-card h1 {
   font-size: 2.5rem;
   color: #fff;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
   margin-bottom: 2rem;
   font-family: cursive;
 }
-
 .celebrate-card button {
   background: #fff;
   color: #d6336c;
@@ -85,21 +88,19 @@ button:hover {
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-
 .celebrate-card button:hover {
   transform: scale(1.05);
 }
 
+/* hearts animation (used on page2 & page3) */
 .heart {
   position: absolute;
   top: -10%;
-  font-size: 24px;
   color: red;
   animation: fall linear infinite;
 }
-
 @keyframes fall {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -109,4 +110,56 @@ button:hover {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Page 3: Letter Card */
+body.page3 {
+  background: #1a1a1a;
+  color: #fff;
+  font-family: cursive;
+  padding: 2rem;
+  overflow: hidden;
+}
+.letter-card {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
+  text-align: center;
+}
+.ribbon {
+  background: #ff5e7e;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+.message-box p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: bold;
+}
+.custom-line {
+  font-style: italic;
+  opacity: 0.9;
+}
+.letter-card button {
+  margin-top: 2rem;
+  background: #fff;
+  color: #d6336c;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.letter-card button:hover {
+  transform: scale(1.05);
 }
