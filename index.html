@@ -3,18 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Bugguuu 🎉</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Surprise Loading...</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+
+    .countdown {
+      font-size: 8rem;
+      text-align: center;
+      margin-top: 20vh;
+      animation: pop 0.5s ease-in-out forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .celebrate {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: black;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .message {
+      font-size: 2rem;
+      color: #ff69b4;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #fff;
+      width: 0;
+      animation: typing 4s steps(30, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 400px; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: white; }
+    }
+
+    .firework {
+      position: absolute;
+      font-size: 2.5rem;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0.3);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Happy Birthday, Bugguuu! 🎂</h1>
-    <p class="subtitle">Wishing you all the happiness and magic today ✨</p>
-    <p class="message">
-      Today isn't just your birthday — it's a reminder that someone amazing was born and changed my world 💗<br><br>
-      May your day be full of love, laughter, and surprises 🎁
-    </p>
-    <button onclick="window.location.href='page2.html'">Begin Your Surprise ❤️</button>
+
+  <div id="countdown" class="countdown">5</div>
+
+  <div class="celebrate" id="celebrate">
+    <div class="message" id="message">Happy Birthday Bugguuu! 🎉</div>
   </div>
+
+  <script>
+    let count = 5;
+    const countdownEl = document.getElementById("countdown");
+    const celebrateEl = document.getElementById("celebrate");
+    const messageEl = document.getElementById("message");
+
+    const interval = setInterval(() => {
+      count--;
+      if (count === 0) {
+        clearInterval(interval);
+        countdownEl.style.display = "none";
+        triggerCelebration();
+      } else {
+        countdownEl.textContent = count;
+        countdownEl.style.animation = "none";
+        void countdownEl.offsetWidth; // Force reflow
+        countdownEl.style.animation = "pop 0.5s ease-in-out";
+      }
+    }, 1000);
+
+    function triggerCelebration() {
+      celebrateEl.style.display = "flex";
+
+      // Fireworks from corners
+      const positions = [
+        { top: "10px", left: "10px" },
+        { top: "10px", right: "10px" },
+        { bottom: "10px", left: "10px" },
+        { bottom: "10px", right: "10px" }
+      ];
+
+      positions.forEach(pos => {
+        const fw = document.createElement("div");
+        fw.classList.add("firework");
+        fw.textContent = "🎆";
+        Object.assign(fw.style, pos);
+        celebrateEl.appendChild(fw);
+
+        setTimeout(() => {
+          fw.remove();
+        }, 1000);
+      });
+
+      // Optional: Redirect to page2.html after 6 seconds
+      // setTimeout(() => {
+      //   window.location.href = 'page2.html';
+      // }, 6000);
+    }
+  </script>
 </body>
 </html>
