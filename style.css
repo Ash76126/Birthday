@@ -7,7 +7,6 @@
 }
 body {
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -57,32 +56,24 @@ button:hover {
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Page 2: Enhanced Celebration Card with Shooting Stars */
+/* Page 2: Celebration Card with Shooting Stars */
 body.page2 {
   height: 100vh;
-  background: linear-gradient(135deg, #2D1B69 0%, #11001C 50%, #2D1B69 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
   position: relative;
   overflow: hidden;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Shooting Stars Animation */
+/* SHOOTING STARS - The exact effect you want! */
 .shooting-star {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 3px;
+  height: 3px;
   background: #ffffff;
   border-radius: 50%;
-  animation: shoot 3s linear infinite;
+  box-shadow: 0 0 10px #ffffff;
+  animation: shootingStar 2.5s linear infinite;
   opacity: 0;
-  z-index: 1;
 }
 
 .shooting-star::before {
@@ -90,87 +81,66 @@ body.page2 {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.8) 30%, transparent 100%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0.5) 60%, transparent 100%);
   transform: translate(-100%, -50%);
-  transform-origin: right center;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255,255,255,0.8);
 }
 
-@keyframes shoot {
+@keyframes shootingStar {
   0% {
     opacity: 0;
-    transform: translateX(-150px) translateY(-150px);
+    transform: translateX(-100px) translateY(-100px);
   }
-  5% {
+  10% {
     opacity: 1;
   }
-  95% {
-    opacity: 0.8;
-    transform: translateX(calc(100vw + 150px)) translateY(calc(100vh + 150px));
+  90% {
+    opacity: 1;
+    transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px));
   }
   100% {
     opacity: 0;
-    transform: translateX(calc(100vw + 150px)) translateY(calc(100vh + 150px));
+    transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px));
   }
 }
 
 /* Different shooting star positions and timings */
 .shooting-star:nth-child(1) {
-  top: 20%;
-  left: 5%;
+  top: 10%;
+  left: 0%;
   animation-delay: 0s;
-  animation-duration: 2.8s;
-}
-
-.shooting-star:nth-child(2) {
-  top: 40%;
-  left: 20%;
-  animation-delay: 2s;
-  animation-duration: 3.2s;
-}
-
-.shooting-star:nth-child(3) {
-  top: 15%;
-  left: 60%;
-  animation-delay: 4s;
-  animation-duration: 2.5s;
-}
-
-.shooting-star:nth-child(4) {
-  top: 55%;
-  left: 10%;
-  animation-delay: 6s;
   animation-duration: 3s;
 }
 
+.shooting-star:nth-child(2) {
+  top: 30%;
+  left: 10%;
+  animation-delay: 1.5s;
+  animation-duration: 2.8s;
+}
+
+.shooting-star:nth-child(3) {
+  top: 50%;
+  left: 5%;
+  animation-delay: 3s;
+  animation-duration: 3.2s;
+}
+
+.shooting-star:nth-child(4) {
+  top: 20%;
+  left: 15%;
+  animation-delay: 4.5s;
+  animation-duration: 2.5s;
+}
+
 .shooting-star:nth-child(5) {
-  top: 35%;
-  left: 70%;
-  animation-delay: 8s;
-  animation-duration: 2.7s;
-}
-
-/* Twinkling Stars */
-.twinkle-star {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #ffffff;
-  border-radius: 50%;
-  animation: twinkle 2s ease-in-out infinite;
-  z-index: 2;
-}
-
-@keyframes twinkle {
-  0%, 100% { 
-    opacity: 0.3; 
-    transform: scale(0.8); 
-  }
-  50% { 
-    opacity: 1; 
-    transform: scale(1.2); 
-  }
+  top: 70%;
+  left: 20%;
+  animation-delay: 6s;
+  animation-duration: 3.5s;
 }
 
 .celebrate-card {
@@ -184,68 +154,38 @@ body.page2 {
   text-align: center;
   overflow: hidden;
   z-index: 10;
-  padding: 2rem;
 }
 
 .celebrate-card h1 {
-  font-size: clamp(2rem, 8vw, 3rem);
-  color: #ffffff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  margin-bottom: 1.5rem;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  opacity: 0;
-  animation: gentleFadeIn 2s ease forwards;
-  line-height: 1.2;
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  margin-bottom: 2rem;
+  font-family: cursive;
 }
 
 .celebrate-card .subtitle {
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
   font-style: italic;
   margin-bottom: 2rem;
-  opacity: 0;
-  animation: gentleFadeIn 2s ease 0.5s forwards;
-  font-weight: 300;
-}
-
-@keyframes gentleFadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(30px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+  font-family: cursive;
 }
 
 .celebrate-card button {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  background: #fff;
+  color: #d6336c;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   border-radius: 50px;
   cursor: pointer;
-  font-weight: 400;
-  font-family: 'Poppins', sans-serif;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  opacity: 0;
-  animation: gentleFadeIn 2s ease 1s forwards;
-  min-height: 48px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .celebrate-card button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-}
-
-.celebrate-card button:active {
-  transform: translateY(0);
+  transform: scale(1.05);
 }
 
 /* hearts animation (used on page2 & page3) */
@@ -254,7 +194,10 @@ body.page2 {
   top: -10%;
   color: red;
   animation: fall linear infinite;
+  font-size: 1.5rem;
+  z-index: 5;
 }
+
 @keyframes fall {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -330,35 +273,21 @@ body.page3 {
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Mobile Optimizations */
+/* Mobile Optimization */
 @media (max-width: 768px) {
   .shooting-star:nth-child(n+4) {
     display: none;
   }
   
-  .twinkle-star:nth-child(n+3) {
+  .heart:nth-child(n+6) {
     display: none;
   }
   
   .celebrate-card h1 {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    font-size: 2rem;
   }
   
   .celebrate-card .subtitle {
-    font-size: clamp(1rem, 4vw, 1.4rem);
-  }
-  
-  .celebrate-card button {
-    padding: 0.8rem 1.5rem;
     font-size: 1rem;
-  }
-}
-
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
