@@ -1,117 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Page 2 – A Special Message</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <style>
-    /* Reuse animated gradient background */
-    body, html {
-      margin: 0; padding: 0; box-sizing: border-box;
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #1a0033 0%, #000 25%, #1a0033 50%, #000 75%, #1a0033 100%);
-      background-size: 400% 400%;
-      animation: gradientShift 8s ease infinite;
-      font-family: 'Poppins', sans-serif;
-      color: #e0e0e0;
-      overflow-x: hidden;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Floating particles */
-    .particle {
-      position: absolute;
-      width: 4px; height: 4px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 50%;
-      animation: float 7s infinite ease-in-out;
-      pointer-events: none;
-    }
-    .particle:nth-child(odd) { animation-duration: 5s; }
-    .particle:nth-child(even) { animation-duration: 9s; }
-    @keyframes float {
-      0%,100% { transform: translateY(0); opacity: 0.3; }
-      50% { transform: translateY(-30px); opacity: 0.8; }
-    }
-
-    /* Main heading */
-    h1 {
-      font-family: 'Fredoka One', cursive;
-      font-size: clamp(2rem, 6vw, 4rem);
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(255,255,255,0.5);
-    }
-
-    /* Sub-message styling */
-    p {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.2rem, 4vw, 2rem);
-      line-height: 1.4;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards 0.5s;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Continue button */
-    .continue-btn {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      font-size: clamp(1rem, 3vw, 1.2rem);
-      font-family: 'Poppins', sans-serif;
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.6);
-      border-radius: 40px;
-      color: #fff;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards 1s;
-    }
-    .continue-btn:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-3px);
-    }
-
-    /* Mobile adjustments */
-    @media (max-width: 600px) {
-      h1 { font-size: clamp(1.5rem, 8vw, 3rem); }
-      p  { font-size: clamp(1rem, 5vw, 1.5rem); }
-      .continue-btn { padding: 0.6rem 1.5rem; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Message - Page 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page2">
+  <!-- Shooting Stars -->
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
 
-  <!-- Floating particles -->
-  <div class="particle" style="left: 10%; top: 20%;"></div>
-  <div class="particle" style="left: 30%; top: 80%;"></div>
-  <div class="particle" style="left: 60%; top: 40%;"></div>
-  <div class="particle" style="left: 80%; top: 75%;"></div>
-  <div class="particle" style="left: 50%; top: 10%;"></div>
+  <!-- Twinkling Stars -->
+  <div class="twinkle-star" style="left: 15%; top: 25%; animation-delay: 0s;"></div>
+  <div class="twinkle-star" style="left: 85%; top: 15%; animation-delay: 1s;"></div>
+  <div class="twinkle-star" style="left: 25%; top: 75%; animation-delay: 2s;"></div>
+  <div class="twinkle-star" style="left: 75%; top: 65%; animation-delay: 3s;"></div>
 
-  <h1>Aur kuch samajh nahi aaya, Somyaa...</h1>
-  <p>Ki aur kya special kar sakte hain…</p>
-  <a href="page3.html" class="continue-btn">Continue</a>
-
+  <!-- Main Content -->
+  <div class="celebrate-card">
+    <h1>
+      Aur kuch samajh<br>
+      nahi aaya,<br>
+      Somyaa...
+    </h1>
+    <p class="subtitle">Ki aur kya special kar sakte hain...</p>
+    <button onclick="window.location.href='page3.html'">Continue</button>
+  </div>
 </body>
 </html>
