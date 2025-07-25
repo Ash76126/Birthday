@@ -2,137 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Final Letter 🎂💝</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-
-  <style>
-    /* ----------  GLOBAL  ---------- */
-    *{margin:0;padding:0;box-sizing:border-box}
-    body,html{
-      height:100%;width:100%;
-      background:linear-gradient(135deg,#12002f 0%,#000 40%,#12002f 100%);
-      background-size:400% 400%;
-      animation:bgShift 10s ease infinite;
-      display:flex;align-items:center;justify-content:center;
-      font-family:'Poppins',sans-serif;color:#eee;overflow:hidden}
-    @keyframes bgShift{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
-
-    /* ----------  MAIN CARD  ---------- */
-    .letter-wrapper{
-      position:relative;
-      max-width:700px;width:90%;
-      padding:2.5rem 2rem 3.5rem;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.12);
-      border-radius:20px;
-      backdrop-filter:blur(14px);
-      box-shadow:0 8px 32px rgba(0,0,0,0.4);
-      text-align:center;
-      overflow:hidden;
-      animation:fadeSlide 1.5s cubic-bezier(.25,.8,.25,1) both}
-    @keyframes fadeSlide{0%{opacity:0;transform:translateY(60px)}100%{opacity:1;transform:translateY(0)}}
-
-    /* ----------  CAKE  ---------- */
-    .cake-area{
-      margin-bottom:2rem;
-      display:flex;justify-content:center}
-    .cake{
-      position:relative;width:200px;height:200px}
-    /* plate */
-    .cake::before{
-      content:"";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
-      width:220px;height:25px;border-radius:50%;
-      background:linear-gradient(#fff,#dcdcdc)}
-    /* body */
-    .cake-body{
-      position:absolute;bottom:15px;left:50%;transform:translateX(-50%);
-      width:180px;height:110px;border-radius:12px;
-      background:linear-gradient(145deg,#ff68a0,#ff8f69);
-      box-shadow:0 0 15px rgba(255, 105, 135,.6)}
-    /* drip */
-    .icing{position:absolute;top:-25px;left:0;width:100%;height:35px;
-      background:#fff;border-radius:12px 12px 18px 18px;
-      clip-path:path("M0,20 Q20,35 40,20 T80,22 T120,18 T160,25 T180,20 L180,0 L0,0 Z")}
-    /* candle */
-    .candle{
-      position:absolute;top:-60px;left:50%;transform:translateX(-50%);
-      width:20px;height:60px;border-radius:6px;background:#ffe066;
-      background-image:repeating-linear-gradient(45deg,#ff7b00 0 8px,#ffe066 8px 16px)}
-    .flame{
-      position:absolute;top:-25px;left:50%;transform:translateX(-50%);
-      width:18px;height:30px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
-      background:#ffdf00;filter:blur(0.5px);
-      animation:flicker 1s infinite ease-in-out}
-    @keyframes flicker{
-      0%,100%{transform:translateX(-50%) scale(1);background:#ffdf00}
-      50%{transform:translateX(-50%) scale(1.15);background:#ffd200}}
-
-    /* ----------  LETTER CONTENT  ---------- */
-    h1{
-      font-family:'Playfair Display',serif;
-      font-size:2rem;letter-spacing:1px;
-      margin-bottom:1rem;color:#ffaad5;text-shadow:0 0 10px rgba(255,170,213,.6)}
-    p{
-      font-size:1.05rem;line-height:1.7;max-width:550px;margin:0 auto 2rem;
-      color:#f1f1f1}
-    .signature{margin-top:1.2rem;font-style:italic;color:#ffaad5}
-
-    /* ----------  GIFT CARD  ---------- */
-    .giftcard{
-      position:relative;cursor:pointer;
-      display:inline-block;margin-top:1rem}
-    .card-front,.card-back{
-      width:260px;height:160px;border-radius:18px;
-      background:linear-gradient(135deg,#ff6ec7 ,#ffc0cb);
-      box-shadow:0 6px 20px rgba(0,0,0,0.3);
-      backface-visibility:hidden;transform-style:preserve-3d;
-      position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center}
-    .card-front{color:#fff;font-weight:600;font-size:1.4rem;letter-spacing:1px}
-    .card-back{
-      padding:1.2rem;background:#fff;color:#333;
-      transform:rotateY(180deg);font-size:0.95rem;line-height:1.5}
-    .giftcard:hover .card-box{transform:rotateY(180deg)}
-    .card-box{transition:transform 0.9s;transform-style:preserve-3d;position:relative}
-
-    /* ----------  FLOATING HEARTS  ---------- */
-    .heart{
-      position:fixed;top:-10%;font-size:28px;color:#ff6ec7;opacity:.7;z-index:0;
-      animation:heartFloat 7s linear infinite}
-    @keyframes heartFloat{
-      0%{transform:translateY(0) rotate(0deg)}
-      100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
-
-    /* ----------  MEDIA QUERIES  ---------- */
-    @media(max-width:600px){
-      h1{font-size:1.6rem}
-      .letter-wrapper{padding:2rem 1.3rem}
-      .cake{transform:scale(.8)}
-      .card-front,.card-back{width:220px;height:135px}
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+<body class="page3">
+  <!-- Floating hearts -->
+  <div class="heart" style="left: 10%; animation-duration: 3s;">💖</div>
+  <div class="heart" style="left: 20%; animation-duration: 4s; animation-delay: 0.5s;">💕</div>
+  <div class="heart" style="left: 30%; animation-duration: 3.5s; animation-delay: 1s;">💝</div>
+  <div class="heart" style="left: 40%; animation-duration: 4.5s; animation-delay: 1.5s;">💗</div>
+  <div class="heart" style="left: 50%; animation-duration: 3.8s; animation-delay: 2s;">💓</div>
+  <div class="heart" style="left: 60%; animation-duration: 4.2s; animation-delay: 2.5s;">💖</div>
+  <div class="heart" style="left: 70%; animation-duration: 3.3s; animation-delay: 3s;">💕</div>
+  <div class="heart" style="left: 80%; animation-duration: 4.8s; animation-delay: 3.5s;">💝</div>
+  <div class="heart" style="left: 90%; animation-duration: 3.7s; animation-delay: 4s;">💗</div>
 
-<body>
-
-  <!-- subtle background hearts -->
-  <script>
-    for(let i=0;i<15;i++){
-      const h=document.createElement('div');
-      h.className='heart';
-      h.style.left=Math.random()*100+'vw';
-      h.style.animationDelay=(Math.random()*8)+'s';
-      h.textContent='💖';
-      document.body.appendChild(h);
-    }
-  </script>
-
-  <!-- main letter -->
+  <!-- Main letter wrapper -->
   <div class="letter-wrapper">
-
-    <!-- animated cake -->
+    <!-- Animated cake -->
     <div class="cake-area">
       <div class="cake">
         <div class="cake-body">
@@ -144,33 +33,36 @@
       </div>
     </div>
 
-    <!-- emotional heading & paragraph -->
+    <!-- Letter content -->
     <h1>Final Letter to You</h1>
     <p>
       Somyaa, I may never find enough words to measure what your smile does to
-      my world, yet here I am&nbsp;— trying.  
+      my world, yet here I am — trying.  
       Every shared memory is a page I re-read on the days I miss the sound of
-      your “good morning.”  
-      If time ever lets us rewrite chapters, know that I’ll start with the line
+      your "good morning."  
+      If time ever lets us rewrite chapters, know that I'll start with the line
       where we laughed at 7:00 am lectures and end with the promise that those
       laughs still echo in my heart.
     </p>
     <p class="signature">– Always here, Ash</p>
 
-    <!-- flip gift-card -->
+    <!-- Flip gift-card -->
     <div class="giftcard">
       <div class="card-box">
         <div class="card-front">Tap to Open 🎁</div>
         <div class="card-back">
           Thank you for painting my ordinary days
-          with colors I didn’t know existed.  
+          with colors I didn't know existed.  
           No matter how pages turn, those hues
           will stay vivid forever. 💜
+          
+          <!-- NEW BUTTON -->
+          <button class="food-btn" onclick="window.location.href='page4.html'">
+            Suno, Idhar Click Karna 😶
+          </button>
         </div>
       </div>
     </div>
-
   </div>
-
 </body>
 </html>
