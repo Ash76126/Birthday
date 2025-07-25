@@ -6,18 +6,105 @@
   <title>Final Letter 🎂💝</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Inline fixes for mobile without touching main CSS -->
+  <style>
+    /* Mobile-specific fixes */
+    @media (max-width: 768px) {
+      body.page3 {
+        padding: 0.5rem !important;
+        overflow: hidden !important;
+        height: 100vh !important;
+      }
+      
+      .letter-wrapper {
+        max-height: 95vh !important;
+        overflow-y: auto !important;
+        padding: 1rem !important;
+      }
+      
+      .giftcard {
+        margin: 1rem auto !important;
+        display: block !important;
+        width: 220px !important;
+        height: 120px !important;
+        background: linear-gradient(135deg, #ff6ec7, #ffc0cb) !important;
+        border-radius: 15px !important;
+        cursor: pointer !important;
+        position: relative !important;
+        perspective: 1000px !important;
+      }
+      
+      .card-box {
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        transform-style: preserve-3d !important;
+        transition: transform 0.8s ease !important;
+      }
+      
+      .giftcard.flipped .card-box {
+        transform: rotateY(180deg) !important;
+      }
+      
+      .card-front, .card-back {
+        position: absolute !important;
+        width: 100% !important;
+        height: 100% !important;
+        backface-visibility: hidden !important;
+        border-radius: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+        padding: 1rem !important;
+        text-align: center !important;
+      }
+      
+      .card-front {
+        background: linear-gradient(135deg, #ff6ec7, #ffc0cb) !important;
+        color: white !important;
+        font-weight: bold !important;
+        font-size: 1.1rem !important;
+      }
+      
+      .card-back {
+        background: white !important;
+        color: #333 !important;
+        transform: rotateY(180deg) !important;
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+      }
+      
+      .food-btn {
+        margin-top: 0.8rem !important;
+        padding: 0.6rem 1rem !important;
+        background: linear-gradient(45deg, #ff6ec7, #ffc0cb) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 20px !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        width: 90% !important;
+        min-height: 40px !important;
+      }
+    }
+    
+    /* Desktop fallback */
+    @media (min-width: 769px) {
+      .giftcard {
+        display: inline-block !important;
+        margin: 1rem !important;
+      }
+    }
+  </style>
 </head>
 <body class="page3">
-  <!-- Floating hearts -->
+  <!-- Reduced hearts for mobile -->
   <div class="heart" style="left: 10%; animation-duration: 3s;">💖</div>
-  <div class="heart" style="left: 20%; animation-duration: 4s; animation-delay: 0.5s;">💕</div>
-  <div class="heart" style="left: 30%; animation-duration: 3.5s; animation-delay: 1s;">💝</div>
-  <div class="heart" style="left: 40%; animation-duration: 4.5s; animation-delay: 1.5s;">💗</div>
-  <div class="heart" style="left: 50%; animation-duration: 3.8s; animation-delay: 2s;">💓</div>
-  <div class="heart" style="left: 60%; animation-duration: 4.2s; animation-delay: 2.5s;">💖</div>
-  <div class="heart" style="left: 70%; animation-duration: 3.3s; animation-delay: 3s;">💕</div>
-  <div class="heart" style="left: 80%; animation-duration: 4.8s; animation-delay: 3.5s;">💝</div>
-  <div class="heart" style="left: 90%; animation-duration: 3.7s; animation-delay: 4s;">💗</div>
+  <div class="heart" style="left: 30%; animation-duration: 4s; animation-delay: 1s;">💕</div>
+  <div class="heart" style="left: 70%; animation-duration: 3.5s; animation-delay: 2s;">💝</div>
 
   <!-- Main letter wrapper -->
   <div class="letter-wrapper">
@@ -46,24 +133,61 @@
     </p>
     <p class="signature">– Always here, Ash</p>
 
-    <!-- Flip gift-card -->
-    <div class="giftcard">
+    <!-- Fixed Gift Card with clear visibility -->
+    <div class="giftcard" id="giftCard">
       <div class="card-box">
-        <div class="card-front">Tap to Open 🎁</div>
+        <div class="card-front">
+          🎁<br>
+          <strong>Tap to Open</strong>
+        </div>
         <div class="card-back">
-          Thank you for painting my ordinary days
-          with colors I didn't know existed.  
-          No matter how pages turn, those hues
-          will stay vivid forever. 💜
-          
-          <!-- NEW BUTTON -->
-          <button class="food-btn" onclick="window.location.href='page4.html'">
+          <div style="margin-bottom: 0.8rem;">
+            Thank you for painting my ordinary days
+            with colors I didn't know existed.  
+            No matter how pages turn, those hues
+            will stay vivid forever. 💜
+          </div>
+          <button class="food-btn" onclick="goToPage4()">
             Suno, Idhar Click Karna 😶
           </button>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    // Enhanced gift card functionality
+    const giftCard = document.getElementById('giftCard');
+    
+    giftCard.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.classList.toggle('flipped');
+    });
+
+    // Touch events for better mobile support
+    giftCard.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      this.classList.toggle('flipped');
+    });
+
+    // Page 4 navigation
+    function goToPage4() {
+      window.location.href = 'page4.html';
+    }
+
+    // Prevent body scrolling on mobile
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    // Prevent zoom on double tap
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, { passive: false });
+  </script>
 </body>
 </html>
-j
