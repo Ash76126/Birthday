@@ -19,7 +19,7 @@
       display:flex; align-items:center; justify-content:center;
       flex-direction:column;
       font-family:'Poppins', sans-serif;
-      overflow-x:hidden;
+      overflow:hidden;
       position: relative;
     }
 
@@ -131,12 +131,6 @@
       }
     }
 
-    /* Hover effect for extra interaction */
-    .message:hover {
-      transform: perspective(500px) rotateX(10deg) rotateY(-10deg) scale(1.05);
-      transition: transform 0.3s ease;
-    }
-
     /* Special styling for "BUGGUU" */
     .bugguu-name {
       font-family: 'Dancing Script', cursive;
@@ -165,6 +159,51 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Age Animation Styles */
+    .age-animation {
+      display: none;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      color: #ffd700;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      margin-top: 1rem;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInAge 2s ease forwards;
+    }
+
+    .age-number {
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: #ff69b4;
+      font-weight: bold;
+      display: inline-block;
+      animation: flip 1s ease forwards;
+    }
+
+    .age-final {
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: #00ffff;
+      font-weight: bold;
+      opacity: 0;
+      animation: popIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeInAge {
+      to { opacity: 1; }
+    }
+
+    @keyframes flip {
+      0% { transform: rotateY(0deg); }
+      50% { transform: rotateY(90deg); }
+      100% { transform: rotateY(0deg); }
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      50% { transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     /* Birthday cake illustration */
@@ -207,19 +246,14 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
       opacity: 0;
-      transform: translateY(20px);
       animation: buttonSlideIn 1s ease forwards;
-      min-height: 48px; /* Touch-friendly for mobile */
+      min-height: 48px;
     }
 
     .next-button:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 25px rgba(255, 0, 255, 0.5);
       background: linear-gradient(45deg, #00ffff, #ff00ff);
-    }
-
-    .next-button:active {
-      transform: translateY(-2px);
     }
 
     @keyframes buttonSlideIn {
@@ -234,8 +268,7 @@
       }
       .message { 
         font-size: clamp(1.5rem, 8vw, 2.5rem);
-        margin-top: 1rem;
-        /* Reduce 3D complexity on mobile for performance */
+        /* Reduce 3D complexity on mobile */
         text-shadow:
           1px 1px 0 #e600e6,
           2px 2px 0 #cc00cc,
@@ -255,8 +288,14 @@
         padding: 0.8rem 1.5rem;
         font-size: clamp(0.9rem, 4vw, 1.1rem);
       }
+      .age-animation {
+        font-size: clamp(1.2rem, 5vw, 2rem);
+      }
+      .age-number, .age-final {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+      }
       /* Reduce particles on mobile */
-      .particle:nth-child(n+6) {
+      .particle:nth-child(n+4) {
         display: none;
       }
     }
@@ -285,6 +324,15 @@
     HAPPY BIRTHDAY,<br>
     <span class="bugguu-name">BUGGUU!!</span> 🎉
   </div>
+
+  <!-- Age Animation -->
+  <div class="age-animation" id="ageAnimation">
+    <span class="age-text">Turning </span>
+    <span class="age-number" id="ageNumber">18</span>
+    <span class="age-text"> into </span>
+    <span class="age-final" id="ageFinal">19!</span>
+  </div>
+
   <div class="cake-container" id="cakeContainer">
     <div class="cake">🎂</div>
   </div>
@@ -300,6 +348,7 @@
     const msgEl = document.getElementById('birthdayMsg');
     const cakeEl = document.getElementById('cakeContainer');
     const nextBtn = document.getElementById('nextBtn');
+    const ageAnimationEl = document.getElementById('ageAnimation');
     let count = 5;
     let autoRedirect = null;
 
@@ -387,8 +436,6 @@
     }
 
     function birthdayFinale() {
-      const mobile = isMobile();
-      
       // Start with cannon
       mobileOptimizedCannon();
       
@@ -397,12 +444,10 @@
         heartConfetti();
       }, 500);
       
-      // Continuous effect (reduced on mobile)
-      if (!mobile) {
-        setTimeout(() => {
-          continuousConfetti();
-        }, 1000);
-      }
+      // Continuous effect
+      setTimeout(() => {
+        continuousConfetti();
+      }, 1000);
     }
 
     // Enhanced countdown with color changes
@@ -416,16 +461,33 @@
         countdownEl.style.display = 'none';
         noteEl.style.display = 'block';
         msgEl.style.display = 'block';
+
+        // Birthday finale confetti
+        birthdayFinale();
+
+        // Show age animation after 2 seconds
+        setTimeout(() => {
+          ageAnimationEl.style.display = 'block';
+          
+          // Trigger number flip after 1 second
+          setTimeout(() => {
+            document.getElementById('ageNumber').style.animationDelay = '0s';
+          }, 1000);
+          
+          // Show final number after 2.5 seconds
+          setTimeout(() => {
+            document.getElementById('ageFinal').style.animationDelay = '0s';
+          }, 2500);
+          
+        }, 2000);
+
         cakeEl.style.display = 'block';
         nextBtn.style.display = 'block';
 
-        // Mobile-optimized confetti
-        birthdayFinale();
-
-        // Auto-redirect after 8 seconds, but can be cancelled by button
+        // Auto-redirect after 12 seconds (extended for age animation)
         autoRedirect = setTimeout(() => {
           window.location.href = 'page2.html';
-        }, 8000);
+        }, 12000);
       }
       count--;
     }, 1000);
