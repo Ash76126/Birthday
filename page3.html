@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Fix background and button issues */
+    /* Complete Page 3 styling with 3D cake */
     body.page3 {
       background: linear-gradient(135deg, #12002f 0%, #000 40%, #12002f 100%) !important;
       background-size: 400% 400% !important;
@@ -59,6 +59,106 @@
       margin: 0.8rem 0 !important;
       color: #ffaad5 !important;
       font-style: italic !important;
+    }
+
+    /* 3D Cake Styles */
+    .cake-area {
+      margin: 1.5rem 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    .cake {
+      width: 140px !important;
+      height: 140px !important;
+      position: relative !important;
+      transform: perspective(300px) rotateX(10deg) !important;
+    }
+
+    .cake::before {
+      content: "" !important;
+      position: absolute !important;
+      bottom: -12px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 160px !important;
+      height: 20px !important;
+      border-radius: 50% !important;
+      background: linear-gradient(135deg, #ddd, #aaa) !important;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3) !important;
+    }
+
+    .cake-body {
+      position: absolute !important;
+      bottom: 15px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 120px !important;
+      height: 80px !important;
+      border-radius: 12px !important;
+      background: linear-gradient(145deg, #ff68a0, #ff8f69) !important;
+      box-shadow: 0 0 25px rgba(255, 105, 135, .8), inset 0 2px 0 rgba(255,255,255,0.3) !important;
+      border: 2px solid rgba(255,255,255,0.2) !important;
+    }
+
+    .icing {
+      position: absolute !important;
+      top: -20px !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 25px !important;
+      background: linear-gradient(135deg, #fff, #f0f0f0) !important;
+      border-radius: 12px 12px 20px 20px !important;
+      clip-path: path("M0,15 Q15,25 30,15 T60,18 T90,12 T120,18 L120,0 L0,0 Z") !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
+    }
+
+    .candle {
+      position: absolute !important;
+      top: -45px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 16px !important;
+      height: 40px !important;
+      border-radius: 6px !important;
+      background: linear-gradient(135deg, #ffe066, #ffd700) !important;
+      background-image: repeating-linear-gradient(45deg, #ff7b00 0 6px, #ffe066 6px 12px) !important;
+      box-shadow: 0 0 10px rgba(255,224,102,0.6) !important;
+    }
+
+    .flame {
+      position: absolute !important;
+      top: -20px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 14px !important;
+      height: 22px !important;
+      border-radius: 50% 50% 50% 50%/60% 60% 40% 40% !important;
+      background: radial-gradient(circle at 30% 80%, #ffdf00, #ff8c00) !important;
+      filter: blur(0.5px) !important;
+      animation: enhanced-flicker 1.2s infinite ease-in-out !important;
+      box-shadow: 0 0 20px rgba(255,223,0,0.8), 0 0 40px rgba(255,140,0,0.4) !important;
+    }
+
+    /* Enhanced flame animation */
+    @keyframes enhanced-flicker {
+      0%, 100% { 
+        transform: translateX(-50%) scale(1) rotate(-2deg); 
+        background: radial-gradient(circle at 30% 80%, #ffdf00, #ff8c00);
+      }
+      25% { 
+        transform: translateX(-50%) scale(1.1) rotate(1deg); 
+        background: radial-gradient(circle at 40% 70%, #ffd200, #ff7700);
+      }
+      50% { 
+        transform: translateX(-50%) scale(1.15) rotate(-1deg); 
+        background: radial-gradient(circle at 35% 75%, #ffed00, #ff9500);
+      }
+      75% { 
+        transform: translateX(-50%) scale(1.05) rotate(2deg); 
+        background: radial-gradient(circle at 25% 85%, #ffdf00, #ff8000);
+      }
     }
 
     /* Fixed Gift Card Styling */
