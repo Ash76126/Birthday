@@ -3,327 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Birthday Message - Page 2</title>
+  <title>Page 2 – A Special Message</title>
 
-  <!-- Same fonts as page 1 for consistency -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    
-    body, html {
-      width:100%; height:100%;
-      /* Same animated background as page 1 */
-      background: linear-gradient(135deg, #1a0033 0%, #000 25%, #1a0033 50%, #000 75%, #1a0033 100%);
-      background-size: 400% 400%;
-      animation: gradientShift 8s ease infinite;
-      display:flex; align-items:center; justify-content:center;
-      flex-direction:column;
-      font-family:'Poppins', sans-serif;
-      overflow:hidden;
-      position: relative;
-    }
+  /* ───────── Global / Background ───────── */
+  *{margin:0;padding:0;box-sizing:border-box}
+  body,html{
+    height:100%;width:100%;
+    background:linear-gradient(135deg,#1a0033 0%,#000 25%,#1a0033 50%,#000 75%,#1a0033 100%);
+    background-size:400% 400%;animation:bgShift 10s ease infinite;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;font-family:'Poppins',sans-serif;position:relative}
+  @keyframes bgShift{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
 
-    /* Same background animation as page 1 */
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  /* subtle heartbreak marquee */
+  .watermark{
+    position:absolute;bottom:8px;width:200%;white-space:nowrap;
+    font-size:12px;color:rgba(255,255,255,0.08);pointer-events:none;
+    animation:scroll 30s linear infinite}
+  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* Same floating particles as page 1 */
-    .particle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: rgba(255, 0, 255, 0.3);
-      border-radius: 50%;
-      animation: float 6s infinite ease-in-out;
-      pointer-events: none;
-    }
+  /* ───────── Floating particles from Page 1 ───────── */
+  .particle{
+    position:absolute;width:3px;height:3px;border-radius:50%;pointer-events:none;
+    background:rgba(255,0,255,.25);animation:float 6s infinite ease-in-out}
+  .particle:nth-child(2n){background:rgba(0,255,255,.25);animation-delay:-2s}
+  .particle:nth-child(3n){background:rgba(255,255,0,.25);animation-delay:-4s}
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(0);opacity:.3}
+    50%    {transform:translateY(-25px) rotate(180deg);opacity:.6}}
 
-    .particle:nth-child(2n) {
-      background: rgba(0, 255, 255, 0.3);
-      animation-delay: -2s;
-    }
+  /* ───────── Falling hearts 💖 ───────── */
+  .heart{
+    position:fixed;top:-8%;font-size:26px;color:#ff6ec7;opacity:.75;
+    animation:heartFall 7s linear infinite}
+  @keyframes heartFall{
+    0%  {transform:translateY(0) rotate(0)}
+    100%{transform:translateY(108vh) rotate(360deg);opacity:0}}
 
-    .particle:nth-child(3n) {
-      background: rgba(255, 255, 0, 0.3);
-      animation-delay: -4s;
-    }
+  /* ───────── Book / Card container ───────── */
+  .book{
+    width:88%;max-width:760px;perspective:1200px}
+  .page{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(12px);border-radius:22px;box-shadow:0 8px 28px rgba(0,0,0,.45);
+    padding:2.5rem 2rem;transform-origin:left;
+    transition:transform .9s cubic-bezier(.55,.06,.3,.99)}
+  .flip .page{transform:rotateY(-180deg)}
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-      25% { transform: translateY(-20px) rotate(90deg); opacity: 0.6; }
-      50% { transform: translateY(-10px) rotate(180deg); opacity: 0.4; }
-      75% { transform: translateY(-30px) rotate(270deg); opacity: 0.5; }
-    }
+  /* 3-D text (same as Page 1) */
+  .message{
+    text-align:center;color:#ff00ff;font-size:clamp(2rem,8vw,3.5rem);
+    font-family:'Fredoka One',cursive;font-weight:700;line-height:1.15;
+    text-shadow:1px 1px 0 #e600e6,2px 2px 0 #cc00cc,3px 3px 0 #b300b3,
+      4px 4px 0 #990099,5px 5px 0 #800080,6px 6px 0 #660066,7px 7px 0 #4d004d,
+      8px 8px 0 #330033,0 0 24px #ff00ff,0 0 38px #ff00ff,10px 10px 22px rgba(0,0,0,.8);
+    transform:perspective(500px) rotateX(15deg) rotateY(-5deg);margin-bottom:1.4rem}
+  .subtitle{
+    font-family:'Dancing Script',cursive;font-size:clamp(1.3rem,5vw,2.3rem);
+    color:#6bb6ff;text-shadow:0 0 14px rgba(107,182,255,.35);margin-bottom:2.2rem}
+  .btn{
+    display:inline-block;padding:1rem 2.2rem;
+    background:linear-gradient(45deg,#ff00ff,#00ffff);color:#fff;
+    border:none;border-radius:50px;font-size:clamp(1rem,4vw,1.25rem);
+    font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(255,0,255,.3);
+    transition:.3s;min-height:50px}
+  .btn:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(255,0,255,.45)}
 
-    /* Falling Heart Emojis 💖 */
-    .falling-heart {
-      position: absolute;
-      top: -10%;
-      font-size: 2rem;
-      animation: heartFall linear infinite;
-      opacity: 0.8;
-      z-index: 2;
-    }
-
-    @keyframes heartFall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.8;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Different heart positions and timings */
-    .falling-heart:nth-child(1) {
-      left: 5%;
-      animation-delay: 0s;
-      animation-duration: 4s;
-    }
-
-    .falling-heart:nth-child(2) {
-      left: 15%;
-      animation-delay: 0.5s;
-      animation-duration: 4.5s;
-    }
-
-    .falling-heart:nth-child(3) {
-      left: 25%;
-      animation-delay: 1s;
-      animation-duration: 3.8s;
-    }
-
-    .falling-heart:nth-child(4) {
-      left: 35%;
-      animation-delay: 1.5s;
-      animation-duration: 4.2s;
-    }
-
-    .falling-heart:nth-child(5) {
-      left: 45%;
-      animation-delay: 2s;
-      animation-duration: 3.5s;
-    }
-
-    .falling-heart:nth-child(6) {
-      left: 55%;
-      animation-delay: 2.5s;
-      animation-duration: 4.8s;
-    }
-
-    .falling-heart:nth-child(7) {
-      left: 65%;
-      animation-delay: 3s;
-      animation-duration: 3.2s;
-    }
-
-    .falling-heart:nth-child(8) {
-      left: 75%;
-      animation-delay: 3.5s;
-      animation-duration: 4.6s;
-    }
-
-    .falling-heart:nth-child(9) {
-      left: 85%;
-      animation-delay: 4s;
-      animation-duration: 3.9s;
-    }
-
-    .falling-heart:nth-child(10) {
-      left: 95%;
-      animation-delay: 4.5s;
-      animation-duration: 4.3s;
-    }
-
-    /* Container for content */
-    .content-container {
-      max-width: 800px;
-      width: 100%;
-      text-align: center;
-      z-index: 10;
-      position: relative;
-    }
-
-    /* 3D TEXT EFFECT - Same as Page 1 */
-    .message {
-      display: block;
-      margin-top: 2rem;
-      text-align: center;
-      color: #ff00ff;
-      font-size: clamp(2rem, 8vw, 3.5rem);
-      font-family: 'Fredoka One', cursive;
-      font-weight: 700;
-      
-      /* Same 3D Text Effect as Page 1 */
-      text-shadow:
-        /* Depth layers for 3D effect */
-        1px 1px 0 #e600e6,
-        2px 2px 0 #cc00cc,
-        3px 3px 0 #b300b3,
-        4px 4px 0 #990099,
-        5px 5px 0 #800080,
-        6px 6px 0 #660066,
-        7px 7px 0 #4d004d,
-        8px 8px 0 #330033,
-        
-        /* Glow effects */
-        0 0 20px #ff00ff,
-        0 0 30px #ff00ff,
-        0 0 40px #ff00ff,
-        0 0 50px #ff00ff,
-        
-        /* Shadow for depth */
-        10px 10px 20px rgba(0, 0, 0, 0.8);
-        
-      /* 3D transform */
-      transform: perspective(500px) rotateX(15deg) rotateY(-5deg);
-      transform-style: preserve-3d;
-      
-      line-height: 1.2;
-      opacity: 0;
-      animation: slideIn3D 2s ease forwards;
-    }
-
-    /* Same 3D animation as Page 1 */
-    @keyframes slideIn3D {
-      0% { 
-        opacity: 0; 
-        transform: perspective(500px) rotateX(45deg) rotateY(-25deg) translateY(100px) scale(0.5);
-      }
-      50% { 
-        opacity: 0.8; 
-        transform: perspective(500px) rotateX(10deg) rotateY(-2deg) translateY(-10px) scale(1.1);
-      }
-      100% { 
-        opacity: 1; 
-        transform: perspective(500px) rotateX(15deg) rotateY(-5deg) translateY(0) scale(1);
-      }
-    }
-
-    /* Subtitle styling */
-    .subtitle {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.4rem, 5vw, 2.4rem);
-      color: #6BB6FF;
-      text-shadow: 0 0 15px rgba(107, 182, 255, 0.3);
-      margin: 1.5rem 0;
-      opacity: 0;
-      animation: slideIn3D 2s ease 0.5s forwards;
-    }
-
-    /* Button styling */
-    .next-button {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      background: linear-gradient(45deg, #ff00ff, #00ffff);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(1rem, 4vw, 1.2rem);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
-      opacity: 0;
-      animation: slideIn3D 2s ease 1s forwards;
-      min-height: 48px;
-    }
-
-    .next-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(255, 0, 255, 0.5);
-      background: linear-gradient(45deg, #00ffff, #ff00ff);
-    }
-
-    /* Mobile optimizations */
-    @media (max-width: 768px) {
-      .message { 
-        font-size: clamp(1.5rem, 8vw, 2.5rem);
-        /* Reduce 3D complexity on mobile */
-        text-shadow:
-          1px 1px 0 #e600e6,
-          2px 2px 0 #cc00cc,
-          3px 3px 0 #b300b3,
-          4px 4px 0 #990099,
-          5px 5px 0 #800080,
-          0 0 20px #ff00ff,
-          0 0 30px #ff00ff,
-          6px 6px 15px rgba(0, 0, 0, 0.8);
-        
-        transform: perspective(400px) rotateX(10deg) rotateY(-3deg);
-      }
-      
-      .subtitle {
-        font-size: clamp(1.2rem, 6vw, 2rem);
-      }
-      
-      .next-button {
-        padding: 0.8rem 1.5rem;
-        font-size: clamp(0.9rem, 4vw, 1.1rem);
-      }
-      
-      /* Reduce hearts on mobile */
-      .falling-heart:nth-child(n+6) {
-        display: none;
-      }
-      
-      .particle:nth-child(n+4) {
-        display: none;
-      }
-      
-      .falling-heart {
-        font-size: 1.5rem;
-      }
-    }
+  /* mobile tweaks */
+  @media(max-width:640px){
+    .message{font-size:clamp(1.6rem,9vw,2.4rem)}
+    .subtitle{font-size:clamp(1.1rem,6vw,1.8rem)}
+    .heart:nth-child(n+7),.particle:nth-child(n+5){display:none}
+  }
   </style>
 </head>
 <body>
-  <!-- Falling Heart Emojis 💖 -->
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
-  <div class="falling-heart">💖</div>
 
-  <!-- Same floating particles as page 1 -->
-  <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
-  <div class="particle" style="left: 20%; top: 80%; animation-delay: 1s;"></div>
-  <div class="particle" style="left: 80%; top: 30%; animation-delay: 2s;"></div>
-  <div class="particle" style="left: 70%; top: 70%; animation-delay: 3s;"></div>
-  <div class="particle" style="left: 30%; top: 50%; animation-delay: 4s;"></div>
+  <!-- hearts -->
+  <script>
+    for(let i=0;i<10;i++){
+      const h=document.createElement('div');
+      h.className='heart';
+      h.style.left=Math.random()*100+'vw';
+      h.style.animationDelay=Math.random()*6+'s';
+      h.textContent='💖';
+      document.body.appendChild(h);
+    }
+  </script>
 
-  <div class="content-container">
-    <!-- 3D Text Message - Same style as Page 1 -->
-    <div class="message">
-      AUR KUCH SAMAJH<br>
-      NAHI AAYA,<br>
-      SOMYAA...
+  <!-- floating particles -->
+  <div class="particle" style="left:12%;top:18%"></div>
+  <div class="particle" style="left:28%;top:72%"></div>
+  <div class="particle" style="left:68%;top:26%"></div>
+  <div class="particle" style="left:80%;top:66%"></div>
+
+  <!-- book card -->
+  <div class="book" id="book">
+    <div class="page">
+      <div class="message">AUR KUCH SAMAJH<br>NAHI AAYA,<br>SOMYAA…</div>
+      <div class="subtitle">ki aur kya special kar sakte hain…</div>
+      <button class="btn" id="next">Idhar Click Kro Madam Jiii ♥️</button>
     </div>
-
-    <!-- Subtitle -->
-    <div class="subtitle">
-      Ki aur kya special kar sakte hain...
-    </div>
-
-    <!-- Next Button -->
-    <button class="next-button" onclick="window.location.href='page3.html'">
-      Final Message ❤️
-    </button>
   </div>
+
+  <!-- subtle scroller line referencing the breakup -->
+  <div class="watermark">
+    30 days without your voice — still sending a birthday wish with all my heart • 
+    30 days without your voice — still sending a birthday wish with all my heart • 
+  </div>
+
+  <!-- flip & redirect script -->
+  <script>
+    const btn=document.getElementById('next');
+    const book=document.getElementById('book');
+    btn.addEventListener('click',()=>{
+      book.classList.add('flip');
+      setTimeout(()=>location.href='page3.html',850); // match transition
+    });
+  </script>
 </body>
 </html>
