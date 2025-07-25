@@ -1,293 +1,261 @@
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Global Reset & Font */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  overflow: hidden;
-}
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/* Page 1: Hero Card */
-body.page1 {
-  background: linear-gradient(135deg, #ffcee4, #f8b500);
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.card {
-  background: rgba(255,255,255,0.9);
-  padding: 2rem;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  max-width: 400px;
-  width: 90%;
-}
-.card h1 {
-  font-size: 2.5rem;
-  color: #d6336c;
-  margin-bottom: 0.5rem;
-}
-.subtitle {
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-.message {
-  margin: 1rem 0;
-  line-height: 1.5;
-}
-button {
-  background: #d6336c;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-button:hover {
-  transform: scale(1.05);
-}
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/* Page 2: Celebration Card with Shooting Stars */
-body.page2 {
-  height: 100vh;
-  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-  position: relative;
-  overflow: hidden;
-}
-
-/* SHOOTING STARS - The exact effect you want! */
-.shooting-star {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #ffffff;
-  animation: shootingStar 2.5s linear infinite;
-  opacity: 0;
-}
-
-.shooting-star::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0.5) 60%, transparent 100%);
-  transform: translate(-100%, -50%);
-  border-radius: 2px;
-  box-shadow: 0 0 8px rgba(255,255,255,0.8);
-}
-
-@keyframes shootingStar {
-  0% {
-    opacity: 0;
-    transform: translateX(-100px) translateY(-100px);
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-    transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px));
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px));
-  }
-}
-
-/* Different shooting star positions and timings */
-.shooting-star:nth-child(1) {
-  top: 10%;
-  left: 0%;
-  animation-delay: 0s;
-  animation-duration: 3s;
-}
-
-.shooting-star:nth-child(2) {
-  top: 30%;
-  left: 10%;
-  animation-delay: 1.5s;
-  animation-duration: 2.8s;
-}
-
-.shooting-star:nth-child(3) {
-  top: 50%;
-  left: 5%;
-  animation-delay: 3s;
-  animation-duration: 3.2s;
-}
-
-.shooting-star:nth-child(4) {
-  top: 20%;
-  left: 15%;
-  animation-delay: 4.5s;
-  animation-duration: 2.5s;
-}
-
-.shooting-star:nth-child(5) {
-  top: 70%;
-  left: 20%;
-  animation-delay: 6s;
-  animation-duration: 3.5s;
-}
-
-.celebrate-card {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.celebrate-card h1 {
-  font-size: 2.5rem;
-  color: #fff;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-  margin-bottom: 2rem;
-  font-family: cursive;
-}
-
-.celebrate-card .subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-style: italic;
-  margin-bottom: 2rem;
-  font-family: cursive;
-}
-
-.celebrate-card button {
-  background: #fff;
-  color: #d6336c;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.celebrate-card button:hover {
-  transform: scale(1.05);
-}
-
-/* hearts animation (used on page2 & page3) */
-.heart {
-  position: absolute;
-  top: -10%;
-  color: red;
-  animation: fall linear infinite;
-  font-size: 1.5rem;
-  z-index: 5;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/* Page 3: Letter Card */
+/* Page 3: Enhanced Letter Card Styles */
 body.page3 {
   background: #1a1a1a;
   color: #fff;
-  font-family: cursive;
+  font-family: 'Poppins', sans-serif;
   padding: 2rem;
   overflow: hidden;
-}
-.letter-card {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: rgba(255,255,255,0.1);
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(255,255,255,0.2);
-  text-align: center;
-}
-.ribbon {
-  background: #ff5e7e;
-  padding: 0.5rem 1.5rem;
-  border-radius: 20px;
-  display: inline-block;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
-}
-.message-box p {
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  font-weight: bold;
-}
-.custom-line {
-  font-style: italic;
-  opacity: 0.9;
-}
-.letter-card button {
-  margin-top: 2rem;
-  background: #fff;
-  color: #d6336c;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.letter-card button:hover {
-  transform: scale(1.05);
-}
-.fireworks {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
+  position: relative;
   height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ────────────────────────────────────────────────────────────────────────── */
-/* Mobile Optimization */
-@media (max-width: 768px) {
-  .shooting-star:nth-child(n+4) {
+.letter-wrapper {
+  position: relative;
+  max-width: 700px;
+  width: 90%;
+  padding: 2.5rem 2rem 3.5rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  text-align: center;
+  overflow: hidden;
+  animation: fadeSlide 1.5s cubic-bezier(.25,.8,.25,1) both;
+}
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(60px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Cake Styles */
+.cake-area {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cake {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.cake::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 25px;
+  border-radius: 50%;
+  background: linear-gradient(#fff, #dcdcdc);
+}
+
+.cake-body {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 110px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ff68a0, #ff8f69);
+  box-shadow: 0 0 15px rgba(255, 105, 135, .6);
+}
+
+.icing {
+  position: absolute;
+  top: -25px;
+  left: 0;
+  width: 100%;
+  height: 35px;
+  background: #fff;
+  border-radius: 12px 12px 18px 18px;
+  clip-path: path("M0,20 Q20,35 40,20 T80,22 T120,18 T160,25 T180,20 L180,0 L0,0 Z");
+}
+
+.candle {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 60px;
+  border-radius: 6px;
+  background: #ffe066;
+  background-image: repeating-linear-gradient(45deg, #ff7b00 0 8px, #ffe066 8px 16px);
+}
+
+.flame {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 30px;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  background: #ffdf00;
+  filter: blur(0.5px);
+  animation: flicker 1s infinite ease-in-out;
+}
+
+@keyframes flicker {
+  0%, 100% { 
+    transform: translateX(-50%) scale(1); 
+    background: #ffdf00; 
+  }
+  50% { 
+    transform: translateX(-50%) scale(1.15); 
+    background: #ffd200; 
+  }
+}
+
+/* Letter Content */
+body.page3 h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  color: #ffaad5;
+  text-shadow: 0 0 10px rgba(255,170,213,.6);
+}
+
+body.page3 p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 550px;
+  margin: 0 auto 2rem;
+  color: #f1f1f1;
+}
+
+.signature {
+  margin-top: 1.2rem;
+  font-style: italic;
+  color: #ffaad5;
+}
+
+/* Gift Card */
+.giftcard {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.card-front, .card-back {
+  width: 260px;
+  height: 160px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff6ec7, #ffc0cb);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.2rem;
+}
+
+.card-front {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.card-back {
+  background: #fff;
+  color: #333;
+  transform: rotateY(180deg);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.giftcard:hover .card-box {
+  transform: rotateY(180deg);
+}
+
+.card-box {
+  transition: transform 0.9s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* NEW: Food Button Styles */
+.food-btn {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(45deg, #ff6ec7, #ffc0cb);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 110, 199, 0.3);
+  min-height: 44px;
+}
+
+.food-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 110, 199, 0.5);
+  background: linear-gradient(45deg, #ffc0cb, #ff6ec7);
+}
+
+.food-btn:active {
+  transform: translateY(0);
+}
+
+/* Hearts animation for page 3 */
+body.page3 .heart {
+  position: absolute;
+  top: -10%;
+  color: rgba(255, 105, 180, 0.6);
+  animation: fall linear infinite;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+/* Mobile optimizations for page 3 */
+@media (max-width: 600px) {
+  body.page3 h1 { 
+    font-size: 1.6rem; 
+  }
+  
+  .letter-wrapper { 
+    padding: 2rem 1.3rem; 
+  }
+  
+  .cake { 
+    transform: scale(.8); 
+  }
+  
+  .card-front, .card-back { 
+    width: 220px; 
+    height: 135px; 
+  }
+  
+  .food-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  body.page3 .heart:nth-child(n+6) {
     display: none;
-  }
-  
-  .heart:nth-child(n+6) {
-    display: none;
-  }
-  
-  .celebrate-card h1 {
-    font-size: 2rem;
-  }
-  
-  .celebrate-card .subtitle {
-    font-size: 1rem;
   }
 }
