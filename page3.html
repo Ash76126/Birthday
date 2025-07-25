@@ -7,226 +7,169 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Enhanced styling for better mobile layout -->
   <style>
-    /* Mobile-specific fixes with better layout */
-    @media (max-width: 768px) {
-      body.page3 {
-        padding: 0.5rem !important;
-        overflow: hidden !important;
-        height: 100vh !important;
+    /* Fix background and button issues */
+    body.page3 {
+      background: linear-gradient(135deg, #12002f 0%, #000 40%, #12002f 100%) !important;
+      background-size: 400% 400% !important;
+      animation: gradientShift 10s ease infinite !important;
+      color: #fff !important;
+      font-family: 'Poppins', sans-serif !important;
+      padding: 1rem !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      height: 100vh !important;
+      width: 100vw !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      padding-top: 1rem !important;
+    }
+
+    .letter-wrapper {
+      max-width: 500px !important;
+      width: 95% !important;
+      padding: 1.5rem 1rem !important;
+      background: rgba(255,255,255,0.08) !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+      border-radius: 15px !important;
+      backdrop-filter: blur(14px) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+      text-align: center !important;
+      max-height: 95vh !important;
+      overflow-y: auto !important;
+    }
+
+    body.page3 h1 {
+      color: #ffaad5 !important;
+      font-size: 1.3rem !important;
+      margin-bottom: 0.8rem !important;
+    }
+
+    .letter-paragraph {
+      font-size: 0.8rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 1rem !important;
+      text-align: left !important;
+      color: #f1f1f1 !important;
+    }
+
+    .signature {
+      font-size: 0.8rem !important;
+      margin: 0.8rem 0 !important;
+      color: #ffaad5 !important;
+      font-style: italic !important;
+    }
+
+    /* Fixed Gift Card Styling */
+    .giftcard {
+      margin: 1.2rem auto !important;
+      display: block !important;
+      width: 220px !important;
+      height: 120px !important;
+      cursor: pointer !important;
+      position: relative !important;
+      perspective: 1000px !important;
+    }
+
+    .card-box {
+      width: 100% !important;
+      height: 100% !important;
+      position: relative !important;
+      transform-style: preserve-3d !important;
+      transition: transform 0.8s ease !important;
+    }
+
+    .giftcard.flipped .card-box {
+      transform: rotateY(180deg) !important;
+    }
+
+    .card-front, .card-back {
+      position: absolute !important;
+      width: 100% !important;
+      height: 100% !important;
+      backface-visibility: hidden !important;
+      border-radius: 15px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-direction: column !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #ff6ec7, #ffc0cb) !important;
+      color: white !important;
+      font-weight: bold !important;
+      font-size: 1.1rem !important;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #fff, #f8f8f8) !important;
+      color: #333 !important;
+      transform: rotateY(180deg) !important;
+      font-size: 0.75rem !important;
+      line-height: 1.3 !important;
+    }
+
+    /* Fixed Food Button */
+    .food-btn {
+      margin-top: 0.8rem !important;
+      padding: 0.7rem 1.2rem !important;
+      background: linear-gradient(45deg, #ff6ec7, #ffc0cb) !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 20px !important;
+      font-size: 0.85rem !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      width: 90% !important;
+      min-height: 44px !important;
+      box-shadow: 0 4px 15px rgba(255, 110, 199, 0.3) !important;
+      transition: all 0.3s ease !important;
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    .food-btn:hover, .food-btn:active {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 20px rgba(255, 110, 199, 0.5) !important;
+      background: linear-gradient(45deg, #ffc0cb, #ff6ec7) !important;
+    }
+
+    /* Hearts */
+    body.page3 .heart {
+      position: fixed !important;
+      top: -10% !important;
+      color: rgba(255, 105, 180, 0.4) !important;
+      animation: fall linear infinite !important;
+      font-size: 1rem !important;
+      z-index: 1 !important;
+      pointer-events: none !important;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.4;
       }
-      
-      .letter-wrapper {
-        max-height: 95vh !important;
-        overflow-y: auto !important;
-        padding: 1rem 0.8rem !important;
-      }
-      
-      /* Reduced font sizes for mobile */
-      body.page3 h1 {
-        font-size: 1.3rem !important;
-        margin-bottom: 0.8rem !important;
-      }
-      
-      .letter-paragraph {
-        font-size: 0.8rem !important;
-        line-height: 1.4 !important;
-        margin-bottom: 1rem !important;
-        text-align: left !important;
-        color: #f1f1f1 !important;
-      }
-      
-      .signature {
-        font-size: 0.8rem !important;
-        margin: 0.8rem 0 !important;
-      }
-      
-      /* Enhanced 3D Cake Styling */
-      .cake-area {
-        margin: 1.5rem 0 !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-      }
-      
-      .cake {
-        width: 140px !important;
-        height: 140px !important;
-        position: relative !important;
-        transform: perspective(300px) rotateX(10deg) !important;
-      }
-      
-      .cake::before {
-        content: "" !important;
-        position: absolute !important;
-        bottom: -12px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 160px !important;
-        height: 20px !important;
-        border-radius: 50% !important;
-        background: linear-gradient(135deg, #ddd, #aaa) !important;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3) !important;
-      }
-      
-      .cake-body {
-        position: absolute !important;
-        bottom: 15px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 120px !important;
-        height: 80px !important;
-        border-radius: 12px !important;
-        background: linear-gradient(145deg, #ff68a0, #ff8f69) !important;
-        box-shadow: 0 0 25px rgba(255, 105, 135, .8), inset 0 2px 0 rgba(255,255,255,0.3) !important;
-        border: 2px solid rgba(255,255,255,0.2) !important;
-      }
-      
-      .icing {
-        position: absolute !important;
-        top: -20px !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 25px !important;
-        background: linear-gradient(135deg, #fff, #f0f0f0) !important;
-        border-radius: 12px 12px 20px 20px !important;
-        clip-path: path("M0,15 Q15,25 30,15 T60,18 T90,12 T120,18 L120,0 L0,0 Z") !important;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
-      }
-      
-      .candle {
-        position: absolute !important;
-        top: -45px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 16px !important;
-        height: 40px !important;
-        border-radius: 6px !important;
-        background: linear-gradient(135deg, #ffe066, #ffd700) !important;
-        background-image: repeating-linear-gradient(45deg, #ff7b00 0 6px, #ffe066 6px 12px) !important;
-        box-shadow: 0 0 10px rgba(255,224,102,0.6) !important;
-      }
-      
-      .flame {
-        position: absolute !important;
-        top: -20px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 14px !important;
-        height: 22px !important;
-        border-radius: 50% 50% 50% 50%/60% 60% 40% 40% !important;
-        background: radial-gradient(circle at 30% 80%, #ffdf00, #ff8c00) !important;
-        filter: blur(0.5px) !important;
-        animation: enhanced-flicker 1.2s infinite ease-in-out !important;
-        box-shadow: 0 0 20px rgba(255,223,0,0.8), 0 0 40px rgba(255,140,0,0.4) !important;
-      }
-      
-      .giftcard {
-        margin: 1.2rem auto !important;
-        display: block !important;
-        width: 220px !important;
-        height: 120px !important;
-        background: linear-gradient(135deg, #ff6ec7, #ffc0cb) !important;
-        border-radius: 15px !important;
-        cursor: pointer !important;
-        position: relative !important;
-        perspective: 1000px !important;
-        box-shadow: 0 6px 20px rgba(255, 110, 199, 0.4) !important;
-      }
-      
-      .card-box {
-        width: 100% !important;
-        height: 100% !important;
-        position: relative !important;
-        transform-style: preserve-3d !important;
-        transition: transform 0.8s ease !important;
-      }
-      
-      .giftcard.flipped .card-box {
-        transform: rotateY(180deg) !important;
-      }
-      
-      .card-front, .card-back {
-        position: absolute !important;
-        width: 100% !important;
-        height: 100% !important;
-        backface-visibility: hidden !important;
-        border-radius: 15px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-direction: column !important;
-        padding: 1rem !important;
-        text-align: center !important;
-      }
-      
-      .card-front {
-        background: linear-gradient(135deg, #ff6ec7, #ffc0cb) !important;
-        color: white !important;
-        font-weight: bold !important;
-        font-size: 1.1rem !important;
-      }
-      
-      .card-back {
-        background: linear-gradient(135deg, #fff, #f8f8f8) !important;
-        color: #333 !important;
-        transform: rotateY(180deg) !important;
-        font-size: 0.75rem !important;
-        line-height: 1.3 !important;
-      }
-      
-      .food-btn {
-        margin-top: 0.8rem !important;
-        padding: 0.6rem 1rem !important;
-        background: linear-gradient(45deg, #ff6ec7, #ffc0cb) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 20px !important;
-        font-size: 0.8rem !important;
-        font-weight: 600 !important;
-        cursor: pointer !important;
-        width: 90% !important;
-        min-height: 40px !important;
-        box-shadow: 0 4px 15px rgba(255, 110, 199, 0.3) !important;
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
       }
     }
-    
-    /* Enhanced flame animation */
-    @keyframes enhanced-flicker {
-      0%, 100% { 
-        transform: translateX(-50%) scale(1) rotate(-2deg); 
-        background: radial-gradient(circle at 30% 80%, #ffdf00, #ff8c00);
-      }
-      25% { 
-        transform: translateX(-50%) scale(1.1) rotate(1deg); 
-        background: radial-gradient(circle at 40% 70%, #ffd200, #ff7700);
-      }
-      50% { 
-        transform: translateX(-50%) scale(1.15) rotate(-1deg); 
-        background: radial-gradient(circle at 35% 75%, #ffed00, #ff9500);
-      }
-      75% { 
-        transform: translateX(-50%) scale(1.05) rotate(2deg); 
-        background: radial-gradient(circle at 25% 85%, #ffdf00, #ff8000);
-      }
-    }
-    
-    /* Desktop fallback */
-    @media (min-width: 769px) {
-      .giftcard {
-        display: inline-block !important;
-        margin: 1rem !important;
-      }
-      
-      .cake {
-        transform: perspective(400px) rotateX(15deg) !important;
-      }
+
+    /* Background animation */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 </head>
 <body class="page3">
-  <!-- Reduced hearts for mobile -->
+  <!-- Floating hearts -->
   <div class="heart" style="left: 10%; animation-duration: 3s;">💖</div>
   <div class="heart" style="left: 70%; animation-duration: 4s; animation-delay: 2s;">💕</div>
 
@@ -263,7 +206,7 @@
     
     <p class="signature">– Always here, Ash</p>
 
-    <!-- Gift Card -->
+    <!-- Fixed Gift Card -->
     <div class="giftcard" id="giftCard">
       <div class="card-box">
         <div class="card-front">
@@ -271,13 +214,13 @@
           <strong>Tap to Open</strong>
         </div>
         <div class="card-back">
-          <div style="margin-bottom: 0.8rem;">
+          <div style="margin-bottom: 0.8rem; font-size: 0.75rem; line-height: 1.3;">
             Thank you for painting my ordinary days
             with colors I didn't know existed.  
             No matter how pages turn, those hues
             will stay vivid forever. 💜
           </div>
-          <button class="food-btn" onclick="goToPage4()">
+          <button class="food-btn" id="foodButton">
             Suno, Idhar Click Karna 😶
           </button>
         </div>
@@ -286,32 +229,47 @@
   </div>
 
   <script>
-    // Enhanced gift card functionality
+    // Fixed gift card and button functionality
     const giftCard = document.getElementById('giftCard');
+    const foodButton = document.getElementById('foodButton');
     
+    // Gift card flip functionality
     giftCard.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.classList.toggle('flipped');
+      // Don't trigger if clicking the button itself
+      if (e.target.id !== 'foodButton') {
+        this.classList.toggle('flipped');
+      }
+    });
+
+    // Food button click functionality
+    foodButton.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent card flip
+      console.log('Food button clicked!'); // Debug log
+      
+      // Navigate to page 4
+      try {
+        window.location.href = 'page4.html';
+      } catch (error) {
+        console.error('Navigation error:', error);
+        // Fallback
+        window.open('page4.html', '_self');
+      }
     });
 
     // Touch events for better mobile support
-    giftCard.addEventListener('touchstart', function(e) {
+    foodButton.addEventListener('touchstart', function(e) {
+      e.stopPropagation();
       e.preventDefault();
-      this.classList.toggle('flipped');
+      console.log('Food button touch!'); // Debug log
+      window.location.href = 'page4.html';
     });
 
-    // Page 4 navigation
-    function goToPage4() {
-      window.location.href = 'page4.html';
-    }
-
-    // Prevent body scrolling on mobile
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
+    // Prevent body scrolling issues
+    document.body.style.position = 'relative';
 
     // Prevent zoom on double tap
     let lastTouchEnd = 0;
-    document.addEventListener('touchend', function (event) {
+    document.addEventListener('touchend', function(event) {
       const now = (new Date()).getTime();
       if (now - lastTouchEnd <= 300) {
         event.preventDefault();
