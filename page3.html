@@ -7,9 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Inline fixes for mobile without touching main CSS -->
+  <!-- Enhanced styling for better mobile layout -->
   <style>
-    /* Mobile-specific fixes */
+    /* Mobile-specific fixes with better layout */
     @media (max-width: 768px) {
       body.page3 {
         padding: 0.5rem !important;
@@ -20,11 +20,110 @@
       .letter-wrapper {
         max-height: 95vh !important;
         overflow-y: auto !important;
-        padding: 1rem !important;
+        padding: 1rem 0.8rem !important;
+      }
+      
+      /* Reduced font sizes for mobile */
+      body.page3 h1 {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem !important;
+      }
+      
+      .letter-paragraph {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 1rem !important;
+        text-align: left !important;
+        color: #f1f1f1 !important;
+      }
+      
+      .signature {
+        font-size: 0.8rem !important;
+        margin: 0.8rem 0 !important;
+      }
+      
+      /* Enhanced 3D Cake Styling */
+      .cake-area {
+        margin: 1.5rem 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .cake {
+        width: 140px !important;
+        height: 140px !important;
+        position: relative !important;
+        transform: perspective(300px) rotateX(10deg) !important;
+      }
+      
+      .cake::before {
+        content: "" !important;
+        position: absolute !important;
+        bottom: -12px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 160px !important;
+        height: 20px !important;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, #ddd, #aaa) !important;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3) !important;
+      }
+      
+      .cake-body {
+        position: absolute !important;
+        bottom: 15px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 120px !important;
+        height: 80px !important;
+        border-radius: 12px !important;
+        background: linear-gradient(145deg, #ff68a0, #ff8f69) !important;
+        box-shadow: 0 0 25px rgba(255, 105, 135, .8), inset 0 2px 0 rgba(255,255,255,0.3) !important;
+        border: 2px solid rgba(255,255,255,0.2) !important;
+      }
+      
+      .icing {
+        position: absolute !important;
+        top: -20px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 25px !important;
+        background: linear-gradient(135deg, #fff, #f0f0f0) !important;
+        border-radius: 12px 12px 20px 20px !important;
+        clip-path: path("M0,15 Q15,25 30,15 T60,18 T90,12 T120,18 L120,0 L0,0 Z") !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
+      }
+      
+      .candle {
+        position: absolute !important;
+        top: -45px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 16px !important;
+        height: 40px !important;
+        border-radius: 6px !important;
+        background: linear-gradient(135deg, #ffe066, #ffd700) !important;
+        background-image: repeating-linear-gradient(45deg, #ff7b00 0 6px, #ffe066 6px 12px) !important;
+        box-shadow: 0 0 10px rgba(255,224,102,0.6) !important;
+      }
+      
+      .flame {
+        position: absolute !important;
+        top: -20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 14px !important;
+        height: 22px !important;
+        border-radius: 50% 50% 50% 50%/60% 60% 40% 40% !important;
+        background: radial-gradient(circle at 30% 80%, #ffdf00, #ff8c00) !important;
+        filter: blur(0.5px) !important;
+        animation: enhanced-flicker 1.2s infinite ease-in-out !important;
+        box-shadow: 0 0 20px rgba(255,223,0,0.8), 0 0 40px rgba(255,140,0,0.4) !important;
       }
       
       .giftcard {
-        margin: 1rem auto !important;
+        margin: 1.2rem auto !important;
         display: block !important;
         width: 220px !important;
         height: 120px !important;
@@ -33,6 +132,7 @@
         cursor: pointer !important;
         position: relative !important;
         perspective: 1000px !important;
+        box-shadow: 0 6px 20px rgba(255, 110, 199, 0.4) !important;
       }
       
       .card-box {
@@ -69,11 +169,11 @@
       }
       
       .card-back {
-        background: white !important;
+        background: linear-gradient(135deg, #fff, #f8f8f8) !important;
         color: #333 !important;
         transform: rotateY(180deg) !important;
-        font-size: 0.8rem !important;
-        line-height: 1.4 !important;
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
       }
       
       .food-btn {
@@ -83,11 +183,32 @@
         color: white !important;
         border: none !important;
         border-radius: 20px !important;
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
         font-weight: 600 !important;
         cursor: pointer !important;
         width: 90% !important;
         min-height: 40px !important;
+        box-shadow: 0 4px 15px rgba(255, 110, 199, 0.3) !important;
+      }
+    }
+    
+    /* Enhanced flame animation */
+    @keyframes enhanced-flicker {
+      0%, 100% { 
+        transform: translateX(-50%) scale(1) rotate(-2deg); 
+        background: radial-gradient(circle at 30% 80%, #ffdf00, #ff8c00);
+      }
+      25% { 
+        transform: translateX(-50%) scale(1.1) rotate(1deg); 
+        background: radial-gradient(circle at 40% 70%, #ffd200, #ff7700);
+      }
+      50% { 
+        transform: translateX(-50%) scale(1.15) rotate(-1deg); 
+        background: radial-gradient(circle at 35% 75%, #ffed00, #ff9500);
+      }
+      75% { 
+        transform: translateX(-50%) scale(1.05) rotate(2deg); 
+        background: radial-gradient(circle at 25% 85%, #ffdf00, #ff8000);
       }
     }
     
@@ -97,18 +218,31 @@
         display: inline-block !important;
         margin: 1rem !important;
       }
+      
+      .cake {
+        transform: perspective(400px) rotateX(15deg) !important;
+      }
     }
   </style>
 </head>
 <body class="page3">
   <!-- Reduced hearts for mobile -->
   <div class="heart" style="left: 10%; animation-duration: 3s;">💖</div>
-  <div class="heart" style="left: 30%; animation-duration: 4s; animation-delay: 1s;">💕</div>
-  <div class="heart" style="left: 70%; animation-duration: 3.5s; animation-delay: 2s;">💝</div>
+  <div class="heart" style="left: 70%; animation-duration: 4s; animation-delay: 2s;">💕</div>
 
   <!-- Main letter wrapper -->
   <div class="letter-wrapper">
-    <!-- Animated cake -->
+    <!-- Letter heading -->
+    <h1>Final Letter to You</h1>
+    
+    <!-- First paragraph -->
+    <p class="letter-paragraph">
+      Somyaa, I may never find enough words to measure what your smile does to
+      my world, yet here I am — trying. Every shared memory is a page I re-read 
+      on the days I miss the sound of your "good morning."
+    </p>
+
+    <!-- 3D Animated Cake in Center -->
     <div class="cake-area">
       <div class="cake">
         <div class="cake-body">
@@ -120,20 +254,16 @@
       </div>
     </div>
 
-    <!-- Letter content -->
-    <h1>Final Letter to You</h1>
-    <p>
-      Somyaa, I may never find enough words to measure what your smile does to
-      my world, yet here I am — trying.  
-      Every shared memory is a page I re-read on the days I miss the sound of
-      your "good morning."  
+    <!-- Second paragraph -->
+    <p class="letter-paragraph">
       If time ever lets us rewrite chapters, know that I'll start with the line
       where we laughed at 7:00 am lectures and end with the promise that those
       laughs still echo in my heart.
     </p>
+    
     <p class="signature">– Always here, Ash</p>
 
-    <!-- Fixed Gift Card with clear visibility -->
+    <!-- Gift Card -->
     <div class="giftcard" id="giftCard">
       <div class="card-box">
         <div class="card-front">
