@@ -1,261 +1,123 @@
 /* ────────────────────────────────────────────────────────────────────────── */
-/* Page 3: Enhanced Letter Card Styles */
-body.page3 {
-  background: #1a1a1a;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  padding: 2rem;
-  overflow: hidden;
-  position: relative;
-  height: 100vh;
+/* Page 4: Food Image Display */
+body.page4 {
+  width: 100%; 
+  height: 100%;
+  background: linear-gradient(135deg, #12002f 0%, #000 40%, #12002f 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.letter-wrapper {
-  position: relative;
-  max-width: 700px;
-  width: 90%;
-  padding: 2.5rem 2rem 3.5rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 20px;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  text-align: center;
-  overflow: hidden;
-  animation: fadeSlide 1.5s cubic-bezier(.25,.8,.25,1) both;
-}
-
-@keyframes fadeSlide {
-  0% { opacity: 0; transform: translateY(60px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Cake Styles */
-.cake-area {
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.cake {
-  position: relative;
-  width: 200px;
-  height: 200px;
-}
-
-.cake::before {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 220px;
-  height: 25px;
-  border-radius: 50%;
-  background: linear-gradient(#fff, #dcdcdc);
-}
-
-.cake-body {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 110px;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #ff68a0, #ff8f69);
-  box-shadow: 0 0 15px rgba(255, 105, 135, .6);
-}
-
-.icing {
-  position: absolute;
-  top: -25px;
-  left: 0;
-  width: 100%;
-  height: 35px;
-  background: #fff;
-  border-radius: 12px 12px 18px 18px;
-  clip-path: path("M0,20 Q20,35 40,20 T80,22 T120,18 T160,25 T180,20 L180,0 L0,0 Z");
-}
-
-.candle {
-  position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 60px;
-  border-radius: 6px;
-  background: #ffe066;
-  background-image: repeating-linear-gradient(45deg, #ff7b00 0 8px, #ffe066 8px 16px);
-}
-
-.flame {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 18px;
-  height: 30px;
-  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
-  background: #ffdf00;
-  filter: blur(0.5px);
-  animation: flicker 1s infinite ease-in-out;
-}
-
-@keyframes flicker {
-  0%, 100% { 
-    transform: translateX(-50%) scale(1); 
-    background: #ffdf00; 
-  }
-  50% { 
-    transform: translateX(-50%) scale(1.15); 
-    background: #ffd200; 
-  }
-}
-
-/* Letter Content */
-body.page3 h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
-  color: #ffaad5;
-  text-shadow: 0 0 10px rgba(255,170,213,.6);
-}
-
-body.page3 p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  max-width: 550px;
-  margin: 0 auto 2rem;
-  color: #f1f1f1;
-}
-
-.signature {
-  margin-top: 1.2rem;
-  font-style: italic;
-  color: #ffaad5;
-}
-
-/* Gift Card */
-.giftcard {
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 1rem;
-}
-
-.card-front, .card-back {
-  width: 260px;
-  height: 160px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #ff6ec7, #ffc0cb);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  padding: 1.2rem;
-}
-
-.card-front {
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-}
-
-.card-back {
-  background: #fff;
-  color: #333;
-  transform: rotateY(180deg);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  text-align: center;
-}
-
-.giftcard:hover .card-box {
-  transform: rotateY(180deg);
-}
-
-.card-box {
-  transition: transform 0.9s;
-  transform-style: preserve-3d;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
   position: relative;
 }
 
-/* NEW: Food Button Styles */
-.food-btn {
-  display: block;
-  margin: 1.5rem auto 0;
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(45deg, #ff6ec7, #ffc0cb);
-  color: #fff;
+/* Food image container */
+.food-container {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  max-width: 90%;
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1.5s ease forwards;
+  opacity: 0;
+}
+
+.food-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
+}
+
+/* Restart button */
+.restart-btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #ff00ff, #00ffff);
+  color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 50px;
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 110, 199, 0.3);
-  min-height: 44px;
+  box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
+  opacity: 0;
+  animation: buttonSlideUp 1s ease 2s forwards;
+  min-height: 48px;
 }
 
-.food-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 110, 199, 0.5);
-  background: linear-gradient(45deg, #ffc0cb, #ff6ec7);
+@keyframes buttonSlideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-.food-btn:active {
-  transform: translateY(0);
+.restart-btn:hover {
+  transform: translateX(-50%) translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 0, 255, 0.5);
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
 }
 
-/* Hearts animation for page 3 */
-body.page3 .heart {
-  position: absolute;
+.restart-btn:active {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Floating hearts for page 4 */
+body.page4 .heart {
+  position: fixed;
   top: -10%;
-  color: rgba(255, 105, 180, 0.6);
-  animation: fall linear infinite;
-  font-size: 1.2rem;
-  z-index: 1;
+  font-size: 24px;
+  color: #ff6ec7;
+  opacity: 0.6;
+  animation: heartFloat 8s linear infinite;
+  pointer-events: none;
 }
 
-/* Mobile optimizations for page 3 */
-@media (max-width: 600px) {
-  body.page3 h1 { 
-    font-size: 1.6rem; 
+@keyframes heartFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Mobile optimizations for page 4 */
+@media (max-width: 768px) {
+  .food-container {
+    padding: 1.5rem;
+    max-height: 60vh;
+    max-width: 95%;
   }
   
-  .letter-wrapper { 
-    padding: 2rem 1.3rem; 
+  .restart-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    bottom: 1.5rem;
   }
   
-  .cake { 
-    transform: scale(.8); 
-  }
-  
-  .card-front, .card-back { 
-    width: 220px; 
-    height: 135px; 
-  }
-  
-  .food-btn {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.9rem;
-  }
-  
-  body.page3 .heart:nth-child(n+6) {
+  body.page4 .heart:nth-child(n+3) {
     display: none;
   }
+  
+  body.page4 .heart {
+    font-size: 20px;
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
