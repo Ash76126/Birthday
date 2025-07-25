@@ -1,129 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Page 2 – A Special Message</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Birthday – Page 2</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- fonts used on page 1 -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-  /* ───────── Global / Background ───────── */
-  *{margin:0;padding:0;box-sizing:border-box}
-  body,html{
-    height:100%;width:100%;
-    background:linear-gradient(135deg,#1a0033 0%,#000 25%,#1a0033 50%,#000 75%,#1a0033 100%);
-    background-size:400% 400%;animation:bgShift 10s ease infinite;
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;font-family:'Poppins',sans-serif;position:relative}
-  @keyframes bgShift{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+<style>
+/* ——— base layout & animated gradient (same as page 1) ——— */
+*{margin:0;padding:0;box-sizing:border-box}
+body,html{
+  height:100%;width:100%;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#1a0033 0%,#000 25%,#1a0033 50%,#000 75%,#1a0033 100%);
+  background-size:400% 400%;animation:bgShift 8s ease infinite}
+@keyframes bgShift{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
 
-  /* subtle heartbreak marquee */
-  .watermark{
-    position:absolute;bottom:8px;width:200%;white-space:nowrap;
-    font-size:12px;color:rgba(255,255,255,0.08);pointer-events:none;
-    animation:scroll 30s linear infinite}
-  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* faint “I miss you” words drifting */
+.whisper{
+  position:fixed;white-space:nowrap;font-size:1.4rem;
+  color:rgba(255,255,255,.06);font-style:italic;pointer-events:none;
+  animation:drift 22s linear infinite}
+@keyframes drift{
+  0%{transform:translateX(-20vw) translateY(0)}
+  100%{transform:translateX(120vw) translateY(-10vh)}
+}
 
-  /* ───────── Floating particles from Page 1 ───────── */
-  .particle{
-    position:absolute;width:3px;height:3px;border-radius:50%;pointer-events:none;
-    background:rgba(255,0,255,.25);animation:float 6s infinite ease-in-out}
-  .particle:nth-child(2n){background:rgba(0,255,255,.25);animation-delay:-2s}
-  .particle:nth-child(3n){background:rgba(255,255,0,.25);animation-delay:-4s}
-  @keyframes float{
-    0%,100%{transform:translateY(0) rotate(0);opacity:.3}
-    50%    {transform:translateY(-25px) rotate(180deg);opacity:.6}}
+/* 3-D headline (identical depth layers to page 1) */
+.message{
+  text-align:center;color:#ff00ff;font-family:'Fredoka One',cursive;
+  font-size:clamp(2rem,8vw,3.6rem);line-height:1.2;font-weight:700;
+  text-shadow:
+    1px 1px 0 #e600e6,2px 2px 0 #cc00cc,3px 3px 0 #b300b3,4px 4px 0 #990099,
+    5px 5px 0 #800080,6px 6px 0 #660066,7px 7px 0 #4d004d,8px 8px 0 #330033,
+    0 0 20px #ff00ff,0 0 30px #ff00ff,0 0 40px #ff00ff,0 0 50px #ff00ff,
+    10px 10px 20px rgba(0,0,0,.8);
+  transform:perspective(500px) rotateX(15deg) rotateY(-5deg);
+  opacity:0;animation:fadeIn 1.2s forwards .3s}
+@keyframes fadeIn{to{opacity:1;transform:perspective(500px) rotateX(15deg) rotateY(-5deg)}}
 
-  /* ───────── Falling hearts 💖 ───────── */
-  .heart{
-    position:fixed;top:-8%;font-size:26px;color:#ff6ec7;opacity:.75;
-    animation:heartFall 7s linear infinite}
-  @keyframes heartFall{
-    0%  {transform:translateY(0) rotate(0)}
-    100%{transform:translateY(108vh) rotate(360deg);opacity:0}}
+/* subtitle */
+.subtitle{
+  font-family:'Dancing Script',cursive;font-size:clamp(1.3rem,5vw,2.3rem);
+  color:#6bb6ff;text-shadow:0 0 12px rgba(107,182,255,.4);
+  margin:1.3rem 0 2rem;opacity:0;animation:fadeIn 1.2s forwards .8s}
 
-  /* ───────── Book / Card container ───────── */
-  .book{
-    width:88%;max-width:760px;perspective:1200px}
-  .page{
-    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);
-    backdrop-filter:blur(12px);border-radius:22px;box-shadow:0 8px 28px rgba(0,0,0,.45);
-    padding:2.5rem 2rem;transform-origin:left;
-    transition:transform .9s cubic-bezier(.55,.06,.3,.99)}
-  .flip .page{transform:rotateY(-180deg)}
+/* button styled like neon pill */
+.next-btn{
+  padding:1rem 2.3rem;border:none;border-radius:45px;
+  font-size:clamp(1rem,4vw,1.25rem);font-weight:600;
+  background:linear-gradient(45deg,#ff00ff,#00ffff);
+  color:#fff;cursor:pointer;box-shadow:0 4px 18px rgba(255,0,255,.35);
+  transition:.3s;opacity:0;animation:fadeIn 1.2s forwards 1.3s}
+.next-btn:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(255,0,255,.5)}
 
-  /* 3-D text (same as Page 1) */
-  .message{
-    text-align:center;color:#ff00ff;font-size:clamp(2rem,8vw,3.5rem);
-    font-family:'Fredoka One',cursive;font-weight:700;line-height:1.15;
-    text-shadow:1px 1px 0 #e600e6,2px 2px 0 #cc00cc,3px 3px 0 #b300b3,
-      4px 4px 0 #990099,5px 5px 0 #800080,6px 6px 0 #660066,7px 7px 0 #4d004d,
-      8px 8px 0 #330033,0 0 24px #ff00ff,0 0 38px #ff00ff,10px 10px 22px rgba(0,0,0,.8);
-    transform:perspective(500px) rotateX(15deg) rotateY(-5deg);margin-bottom:1.4rem}
-  .subtitle{
-    font-family:'Dancing Script',cursive;font-size:clamp(1.3rem,5vw,2.3rem);
-    color:#6bb6ff;text-shadow:0 0 14px rgba(107,182,255,.35);margin-bottom:2.2rem}
-  .btn{
-    display:inline-block;padding:1rem 2.2rem;
-    background:linear-gradient(45deg,#ff00ff,#00ffff);color:#fff;
-    border:none;border-radius:50px;font-size:clamp(1rem,4vw,1.25rem);
-    font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(255,0,255,.3);
-    transition:.3s;min-height:50px}
-  .btn:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(255,0,255,.45)}
+/* ——— book-flip transition ——— */
+.page{
+  position:relative;transform-origin:left;
+  transition:transform .7s cubic-bezier(.55,.06,.68,.19)}
+.flip .page{transform:rotateY(-120deg)}
+/* dark backside glimpse */
+.page::after{
+  content:"";position:absolute;inset:0;background:#000;
+  border-left:2px solid rgba(255,255,255,.15);
+  transform:rotateY(180deg);backface-visibility:hidden}
 
-  /* mobile tweaks */
-  @media(max-width:640px){
-    .message{font-size:clamp(1.6rem,9vw,2.4rem)}
-    .subtitle{font-size:clamp(1.1rem,6vw,1.8rem)}
-    .heart:nth-child(n+7),.particle:nth-child(n+5){display:none}
-  }
-  </style>
+/* media tweaks */
+@media(max-width:768px){
+  .message{font-size:clamp(1.5rem,8vw,2.6rem);
+           text-shadow:1px 1px 0 #e600e6,2px 2px 0 #cc00cc,
+           3px 3px 0 #b300b3,0 0 25px #ff00ff,6px 6px 15px rgba(0,0,0,.8)}
+  .subtitle{font-size:clamp(1.1rem,6vw,1.8rem)}
+}
+
+/* random floating particles reused */
+.particle{
+  position:fixed;width:3px;height:3px;border-radius:50%;
+  background:rgba(255,0,255,.3);animation:float 6s infinite ease-in-out}
+.particle:nth-child(odd){background:rgba(0,255,255,.3);animation-delay:-3s}
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(0);opacity:.3}
+  50%{transform:translateY(-25px) rotate(180deg);opacity:.6}}
+</style>
 </head>
+
 <body>
 
-  <!-- hearts -->
-  <script>
-    for(let i=0;i<10;i++){
-      const h=document.createElement('div');
-      h.className='heart';
-      h.style.left=Math.random()*100+'vw';
-      h.style.animationDelay=Math.random()*6+'s';
-      h.textContent='💖';
-      document.body.appendChild(h);
-    }
-  </script>
+<!-- soft drifting “miss you” lines -->
+<div class="whisper" style="top:20%;animation-delay:0s;">i&nbsp;miss&nbsp;you&nbsp;more&nbsp;each&nbsp;day</div>
+<div class="whisper" style="top:55%;animation-delay:6s;">30&nbsp;days&nbsp;since&nbsp;we&nbsp;laughed&nbsp;together</div>
 
-  <!-- floating particles -->
-  <div class="particle" style="left:12%;top:18%"></div>
-  <div class="particle" style="left:28%;top:72%"></div>
-  <div class="particle" style="left:68%;top:26%"></div>
-  <div class="particle" style="left:80%;top:66%"></div>
+<!-- tiny particles for depth -->
+<div class="particle" style="left:12%;top:22%"></div>
+<div class="particle" style="left:28%;top:78%"></div>
+<div class="particle" style="left:70%;top:34%"></div>
 
-  <!-- book card -->
-  <div class="book" id="book">
-    <div class="page">
-      <div class="message">AUR KUCH SAMAJH<br>NAHI AAYA,<br>SOMYAA…</div>
-      <div class="subtitle">ki aur kya special kar sakte hain…</div>
-      <button class="btn" id="next">Idhar Click Kro Madam Jiii ♥️</button>
-    </div>
+<!-- main page wrapped for flip -->
+<div class="page">
+
+  <div class="message">
+    AUR KUCH SAMAJH<br>
+    NAHI AAYA,<br>
+    SOMYAA...
   </div>
 
-  <!-- subtle scroller line referencing the breakup -->
-  <div class="watermark">
-    30 days without your voice — still sending a birthday wish with all my heart • 
-    30 days without your voice — still sending a birthday wish with all my heart • 
+  <div class="subtitle">
+    ki aur kya special kar sakte hain…
   </div>
 
-  <!-- flip & redirect script -->
-  <script>
-    const btn=document.getElementById('next');
-    const book=document.getElementById('book');
-    btn.addEventListener('click',()=>{
-      book.classList.add('flip');
-      setTimeout(()=>location.href='page3.html',850); // match transition
-    });
-  </script>
+  <button class="next-btn" id="goBtn">
+    Idhar Click Kro Madam Jiii ♥️
+  </button>
+
+</div>
+
+<script>
+/* flip then redirect */
+const btn=document.getElementById('goBtn');
+btn.addEventListener('click',()=>{
+  document.body.classList.add('flip');
+  setTimeout(()=>location.href='page3.html',700);
+});
+
+/* light touch - prevent accidental zoom on dbl-tap */
+let last=0;
+document.addEventListener('touchend',e=>{
+  const now=Date.now();if(now-last<=300)e.preventDefault();last=now;
+});
+</script>
 </body>
 </html>
