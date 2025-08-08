@@ -61,211 +61,163 @@
       font-style: italic !important;
     }
 
-    /* Enhanced 3D Rotating Cake */
+    /* Fixed 3D Rotating Cake */
     .cake-area {
-      margin: 2rem 0 !important;
+      margin: 1.5rem 0 !important;
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
-      perspective: 800px !important;
-      height: 200px !important;
+      height: 180px !important;
+      perspective: 600px !important;
     }
 
     .cake-container {
       position: relative !important;
-      width: 160px !important;
-      height: 160px !important;
+      width: 140px !important;
+      height: 140px !important;
       transform-style: preserve-3d !important;
-      animation: rotate360 8s linear infinite !important;
+      animation: smoothRotate 10s linear infinite !important;
     }
 
-    /* Cake Base (Plate) */
+    /* Stable cake base/plate */
     .cake-plate {
       position: absolute !important;
-      bottom: -15px !important;
+      bottom: -10px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
-      width: 180px !important;
-      height: 25px !important;
+      width: 160px !important;
+      height: 20px !important;
+      background: linear-gradient(135deg, #ddd 0%, #aaa 100%) !important;
       border-radius: 50% !important;
-      background: linear-gradient(135deg, #e8e8e8, #b8b8b8) !important;
-      box-shadow: 
-        0 5px 15px rgba(0,0,0,0.3),
-        inset 0 2px 5px rgba(255,255,255,0.5),
-        inset 0 -2px 5px rgba(0,0,0,0.2) !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
     }
 
-    /* Main Cake Body - Multiple Layers for 3D Effect */
+    /* Main cake body - simplified but effective 3D */
     .cake-body {
       position: absolute !important;
-      bottom: 20px !important;
+      bottom: 15px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
-      width: 130px !important;
-      height: 90px !important;
-      border-radius: 15px !important;
-      background: linear-gradient(145deg, #ff6b9d, #ff8f69) !important;
+      width: 120px !important;
+      height: 80px !important;
+      background: linear-gradient(145deg, #ff6b9d 0%, #ff8f69 100%) !important;
+      border-radius: 12px !important;
       box-shadow: 
-        0 0 30px rgba(255, 107, 157, 0.8),
-        inset 0 5px 15px rgba(255,255,255,0.3),
-        inset 0 -5px 15px rgba(0,0,0,0.2),
-        0 15px 30px rgba(0,0,0,0.4) !important;
-      position: relative !important;
-      overflow: hidden !important;
+        0 0 20px rgba(255, 107, 157, 0.6),
+        inset 3px 3px 10px rgba(255,255,255,0.3),
+        inset -3px -3px 10px rgba(0,0,0,0.2) !important;
     }
 
-    /* Cake Side Highlights for 3D Depth */
-    .cake-body::before {
-      content: '' !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 15px !important;
-      height: 100% !important;
-      background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent) !important;
-      border-radius: 15px 0 0 15px !important;
-    }
-
-    .cake-body::after {
-      content: '' !important;
-      position: absolute !important;
-      top: 0 !important;
-      right: 0 !important;
-      width: 15px !important;
-      height: 100% !important;
-      background: linear-gradient(270deg, rgba(0,0,0,0.3), transparent) !important;
-      border-radius: 0 15px 15px 0 !important;
-    }
-
-    /* Realistic Icing with Drips */
+    /* Realistic icing layer */
     .icing {
       position: absolute !important;
-      top: -25px !important;
+      top: -18px !important;
       left: 0 !important;
       width: 100% !important;
-      height: 35px !important;
-      background: linear-gradient(135deg, #fff, #f5f5f5) !important;
-      border-radius: 15px 15px 20px 20px !important;
-      clip-path: path("M0,20 Q10,35 25,18 Q40,30 55,15 Q70,32 85,20 Q100,28 115,16 Q125,35 130,20 L130,0 L0,0 Z") !important;
-      box-shadow: 
-        0 3px 15px rgba(0,0,0,0.2),
-        inset 0 2px 8px rgba(255,255,255,0.8),
-        inset 0 -2px 8px rgba(0,0,0,0.1) !important;
+      height: 25px !important;
+      background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%) !important;
+      border-radius: 12px 12px 18px 18px !important;
+      clip-path: path("M0,12 Q20,25 40,10 Q60,22 80,8 Q100,20 120,12 L120,0 L0,0 Z") !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.8) !important;
     }
 
-    /* Enhanced 3D Candle */
+    /* Stable 3D candle */
     .candle {
       position: absolute !important;
-      top: -55px !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      width: 18px !important;
-      height: 50px !important;
-      border-radius: 8px !important;
-      background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #ffb300 100%) !important;
-      background-image: 
-        repeating-linear-gradient(45deg, 
-          rgba(255,123,0,0.3) 0, rgba(255,123,0,0.3) 3px, 
-          transparent 3px, transparent 6px),
-        linear-gradient(90deg, rgba(255,255,255,0.4) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.2) 100%) !important;
-      box-shadow: 
-        0 0 15px rgba(255,224,102,0.8),
-        inset 2px 0 5px rgba(255,255,255,0.5),
-        inset -2px 0 5px rgba(0,0,0,0.2) !important;
-    }
-
-    /* Ultra Realistic Flame */
-    .flame {
-      position: absolute !important;
-      top: -30px !important;
+      top: -45px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
       width: 16px !important;
-      height: 28px !important;
-      border-radius: 50% 50% 50% 50%/60% 60% 40% 40% !important;
-      background: radial-gradient(ellipse at 30% 80%, #ffed4e 0%, #ff6b35 30%, #d73502 60%, #ad2d07 100%) !important;
-      filter: blur(0.8px) !important;
-      animation: realisticFlame 1.5s infinite ease-in-out !important;
+      height: 40px !important;
+      background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #ffb300 100%) !important;
+      border-radius: 6px !important;
       box-shadow: 
-        0 0 25px rgba(255,237,78,0.9),
-        0 0 50px rgba(255,107,53,0.6),
-        0 0 75px rgba(215,53,2,0.3) !important;
+        0 0 10px rgba(255,224,102,0.6),
+        inset 2px 0 4px rgba(255,255,255,0.4),
+        inset -2px 0 4px rgba(0,0,0,0.2) !important;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255,123,0,0.2) 0px,
+        rgba(255,123,0,0.2) 4px,
+        transparent 4px,
+        transparent 8px
+      ) !important;
     }
 
-    /* Flame Inner Core for More Realism */
+    /* Realistic flame - stable animation */
+    .flame {
+      position: absolute !important;
+      top: -22px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 14px !important;
+      height: 24px !important;
+      background: radial-gradient(ellipse at 30% 80%, 
+        #fff176 0%, 
+        #ffeb3b 25%, 
+        #ff9800 50%, 
+        #e65100 75%, 
+        #bf360c 100%) !important;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40% !important;
+      animation: stableFlame 2s ease-in-out infinite !important;
+      box-shadow: 
+        0 0 20px rgba(255,241,118,0.8),
+        0 0 40px rgba(255,152,0,0.4) !important;
+      filter: blur(0.5px) !important;
+    }
+
+    /* Flame inner glow */
     .flame::before {
       content: '' !important;
       position: absolute !important;
-      top: 3px !important;
+      top: 2px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
       width: 8px !important;
-      height: 18px !important;
-      border-radius: 50% 50% 50% 50%/60% 60% 40% 40% !important;
-      background: radial-gradient(ellipse at 30% 70%, #fff5b7 0%, #ffed4e 40%, #ff9500 80%) !important;
-      animation: innerFlame 1.8s infinite ease-in-out !important;
+      height: 16px !important;
+      background: radial-gradient(ellipse at 30% 70%, 
+        #fff9c4 0%, 
+        #fff176 50%, 
+        #ffb74d 100%) !important;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40% !important;
+      animation: innerGlow 2.5s ease-in-out infinite !important;
     }
 
-    /* 360 Degree Rotation */
-    @keyframes rotate360 {
-      0% { transform: rotateY(0deg) rotateX(15deg); }
-      25% { transform: rotateY(90deg) rotateX(15deg); }
-      50% { transform: rotateY(180deg) rotateX(15deg); }
-      75% { transform: rotateY(270deg) rotateX(15deg); }
-      100% { transform: rotateY(360deg) rotateX(15deg); }
+    /* Smooth 360 rotation */
+    @keyframes smoothRotate {
+      0% { transform: rotateY(0deg) rotateX(10deg); }
+      100% { transform: rotateY(360deg) rotateX(10deg); }
     }
 
-    /* Realistic Flame Animation */
-    @keyframes realisticFlame {
+    /* Stable flame animation */
+    @keyframes stableFlame {
       0%, 100% { 
-        transform: translateX(-50%) scale(1) rotate(-2deg) scaleY(1);
-        background: radial-gradient(ellipse at 30% 80%, #ffed4e 0%, #ff6b35 30%, #d73502 60%, #ad2d07 100%);
-        filter: blur(0.8px);
-      }
-      15% { 
-        transform: translateX(-50%) scale(1.05) rotate(1deg) scaleY(1.1);
-        background: radial-gradient(ellipse at 25% 75%, #fff176 0%, #ff7043 35%, #e53935 65%, #b71c1c 100%);
-        filter: blur(0.6px);
-      }
-      30% { 
-        transform: translateX(-50%) scale(1.1) rotate(-1deg) scaleY(0.95);
-        background: radial-gradient(ellipse at 35% 85%, #ffeb3b 0%, #ff5722 25%, #d32f2f 55%, #a5000a 100%);
-        filter: blur(1px);
-      }
-      45% { 
-        transform: translateX(-50%) scale(0.95) rotate(2deg) scaleY(1.15);
-        background: radial-gradient(ellipse at 40% 70%, #fff59d 0%, #ff8a65 40%, #e57373 70%, #c62828 100%);
-        filter: blur(0.7px);
-      }
-      60% { 
-        transform: translateX(-50%) scale(1.08) rotate(-1.5deg) scaleY(1.05);
-        background: radial-gradient(ellipse at 20% 80%, #ffecb3 0%, #ffab40 30%, #ff7043 60%, #d84315 100%);
-        filter: blur(0.9px);
-      }
-      80% { 
-        transform: translateX(-50%) scale(1.02) rotate(1.5deg) scaleY(0.9);
-        background: radial-gradient(ellipse at 45% 75%, #fff8e1 0%, #ffc107 35%, #f57c00 65%, #e65100 100%);
-        filter: blur(0.5px);
-      }
-    }
-
-    /* Inner Flame Animation */
-    @keyframes innerFlame {
-      0%, 100% { 
-        transform: translateX(-50%) scale(1) rotate(1deg);
-        opacity: 0.8;
+        transform: translateX(-50%) scale(1) rotate(-1deg);
+        background: radial-gradient(ellipse at 30% 80%, #fff176 0%, #ffeb3b 25%, #ff9800 50%, #e65100 75%, #bf360c 100%);
       }
       25% { 
-        transform: translateX(-50%) scale(1.1) rotate(-1deg);
+        transform: translateX(-50%) scale(1.05) rotate(1deg);
+        background: radial-gradient(ellipse at 25% 75%, #fff59d 0%, #ffc107 30%, #ff7043 55%, #d84315 80%, #a5000a 100%);
+      }
+      50% { 
+        transform: translateX(-50%) scale(0.95) rotate(-0.5deg);
+        background: radial-gradient(ellipse at 35% 85%, #ffecb3 0%, #ffab40 20%, #f57c00 45%, #e53935 70%, #b71c1c 100%);
+      }
+      75% { 
+        transform: translateX(-50%) scale(1.02) rotate(0.5deg);
+        background: radial-gradient(ellipse at 40% 70%, #fff8e1 0%, #ffd54f 25%, #ff8f00 50%, #ff5722 75%, #d32f2f 100%);
+      }
+    }
+
+    /* Inner flame glow */
+    @keyframes innerGlow {
+      0%, 100% { 
+        transform: translateX(-50%) scale(1);
         opacity: 0.9;
       }
       50% { 
-        transform: translateX(-50%) scale(0.9) rotate(2deg);
+        transform: translateX(-50%) scale(1.1);
         opacity: 1;
-      }
-      75% { 
-        transform: translateX(-50%) scale(1.05) rotate(-0.5deg);
-        opacity: 0.85;
       }
     }
 
@@ -370,27 +322,35 @@
     /* Mobile Optimizations */
     @media (max-width: 768px) {
       .cake-container {
-        width: 120px !important;
-        height: 120px !important;
+        width: 110px !important;
+        height: 110px !important;
       }
       
       .cake-body {
-        width: 100px !important;
-        height: 70px !important;
+        width: 90px !important;
+        height: 60px !important;
       }
       
       .cake-plate {
-        width: 140px !important;
+        width: 120px !important;
+        height: 15px !important;
       }
       
       .candle {
-        width: 14px !important;
-        height: 35px !important;
+        width: 12px !important;
+        height: 30px !important;
+        top: -35px !important;
       }
       
       .flame {
-        width: 12px !important;
-        height: 20px !important;
+        width: 10px !important;
+        height: 18px !important;
+        top: -18px !important;
+      }
+      
+      .icing {
+        height: 18px !important;
+        top: -14px !important;
       }
     }
   </style>
@@ -403,12 +363,11 @@
   <div class="letter-wrapper">
     <h1>Final Letter to You</h1>
     
-    <!-- First paragraph with your personal message -->
     <p class="letter-paragraph">
       Somuu, I may never find enough words to measure what your existence does to my world. Kuch gift surprise krna tha mujhe aise sukha sukha wish krna psnd nahi. Fir bhi I tried doing my best, kyuki kuch toh special krna tha na somuuuuu. May all ur wishes come true, May u achieve all the success.♥️
     </p>
 
-    <!-- Enhanced 3D Rotating Cake -->
+    <!-- Fixed 3D Rotating Cake -->
     <div class="cake-area">
       <div class="cake-container">
         <div class="cake-plate"></div>
@@ -421,15 +380,12 @@
       </div>
     </div>
 
-    <!-- Second paragraph with your personal message -->
     <p class="letter-paragraph">
       If time ever lets us rewrite chapters, know that I'll start with the line where we laughed at 6-7am videocalls jab tum ready hoti thi. (Ekdum cutu lagti thiii) Umm, maybe vo time kabhi wapis ni aaye but vo mere bestest the. Also I'm very bad in paragraphs, baaki toh tumhe pata he hain kya feel krra hu.
     </p>
 
-    <!-- Updated signature -->
     <p class="signature">-Always Here For You, Shah.</p>
 
-    <!-- Gift Card -->
     <div class="giftcard" id="giftCard">
       <div class="card-box">
         <div class="card-front">
