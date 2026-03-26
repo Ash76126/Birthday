@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somya 👑</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #0d0610;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* ========== INTRO SCREEN ========== */
+  #intro {
+    position: fixed; inset: 0; z-index: 999;
+    background: radial-gradient(ellipse at 50% 40%, #1a0820 0%, #0d0610 60%, #050308 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0;
+    overflow: hidden;
+  }
+
+  /* Animated aurora background */
+  #intro::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 80% 50% at 50% 60%, rgba(201,96,128,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 30% 30%, rgba(123,63,110,0.1) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 70% 70%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    animation: auroraShift 6s ease-in-out infinite alternate;
+  }
+  @keyframes auroraShift {
+    0%  { opacity:0.6; transform:scale(1) rotate(0deg); }
+    100%{ opacity:1;   transform:scale(1.08) rotate(1deg); }
+  }
+
+  #intro-canvas {
+    position:absolute; inset:0; pointer-events:none;
+  }
+
+  #intro-inner {
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:0;
+  }
+
+  /* Crown above text */
+  #intro-crown {
+    font-size: clamp(3rem, 12vw, 6rem);
+    display:block; text-align:center; margin-bottom:10px;
+    animation: crownFloat 3s ease-in-out infinite, crownGlow 2s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 30px rgba(201,168,76,0.9));
+  }
+  @keyframes crownFloat {
+    0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-12px) rotate(3deg);}
+  }
+  @keyframes crownGlow {
+    from{filter:drop-shadow(0 0 20px rgba(201,168,76,0.7));}
+    to{filter:drop-shadow(0 0 50px rgba(201,168,76,1)) drop-shadow(0 0 80px rgba(232,160,176,0.5));}
+  }
+
+  #intro-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 12vw, 6.5rem);
+    font-style: italic; font-weight: 700;
+    text-align: center;
+    line-height: 1.15;
+    padding: 0 24px;
+    min-height: 2.8em;
+    background: linear-gradient(135deg, #f0d080, #e8a0b0, #c96080, #f0d080);
+    background-size: 300% 300%;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    animation: introShimmer 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 40px rgba(232,160,176,0.6));
+  }
+  @keyframes introShimmer {
+    0%,100%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+  }
+
+  #intro-cursor {
+    display: inline-block; width: 4px; height: 0.85em;
+    background: #e8a0b0; vertical-align: middle;
+    animation: blink 0.8s step-end infinite; margin-left: 6px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #e8a0b0;
+  }
+  @keyframes blink { 50%{opacity:0;} }
+
+  /* Decorative line under text */
+  #intro-deco {
+    margin-top: 22px;
+    display:flex; align-items:center; gap:14px;
+    opacity:0; animation: decoAppear 1s ease 1.5s forwards;
+  }
+  @keyframes decoAppear { to{opacity:1;} }
+  .intro-dline {
+    width: clamp(50px,15vw,100px); height:1px;
+    background: linear-gradient(to right, transparent, #c9a84c, transparent);
+  }
+  .intro-dgem { color:#c9a84c; font-size:1.1rem; animation:spin 8s linear infinite; }
+  @keyframes spin { to{transform:rotate(360deg);} }
+
+  /* Floating hearts */
+  .intro-heart {
+    position:absolute; pointer-events:none; z-index:1;
+    animation: heartRise var(--hd,4s) ease-in-out infinite;
+    opacity:0;
+  }
+  @keyframes heartRise {
+    0%{opacity:0;transform:translateY(0) scale(0.5);}
+    20%{opacity:0.8;}
+    80%{opacity:0.3;}
+    100%{opacity:0;transform:translateY(-60vh) scale(1.2) rotate(var(--hr,15deg));}
+  }
+
+  #intro-skip {
+    position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+    color: rgba(255,255,255,0.25); font-size: 0.78rem;
+    letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s, letter-spacing 0.3s;
+    background: none; border: none; font-family: inherit;
+    z-index:3;
+  }
+  #intro-skip:hover { color: rgba(255,255,255,0.6); letter-spacing:6px; }
+
+  #intro.fade-out {
+    animation: introFade 0.8s ease forwards;
+  }
+  @keyframes introFade {
+    to { opacity:0; pointer-events:none; }
+  }
+
+  /* ========== MAIN PAGE ========== */
+  #main {
+    opacity: 0; transition: opacity 0.8s ease;
+  }
+  #main.visible { opacity: 1; }
+
+  /* Stars */
+  .stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+  .star {
+    position:absolute; border-radius:50%; background:white;
+    animation:twinkle var(--d,3s) ease-in-out infinite; opacity:0;
+  }
+  @keyframes twinkle { 0%,100%{opacity:0;} 50%{opacity:var(--o,0.6);} }
+
+  /* Petals */
+  .petal {
+    position:fixed; top:-30px;
+    animation:petalFall var(--fd,9s) ease-in infinite;
+    opacity:0; pointer-events:none; z-index:0;
+  }
+  @keyframes petalFall {
+    0%{opacity:0;transform:translateY(-20px) rotate(0);}
+    10%{opacity:0.7;}
+    90%{opacity:0.4;}
+    100%{opacity:0;transform:translateY(108vh) rotate(540deg) translateX(var(--px,20px));}
+  }
+
+  /* Shooting star */
+  .shoot {
+    position:fixed; height:1px; width:140px; left:-200px;
+    background:linear-gradient(to right,transparent,white,#f0d080);
+    animation:shootAcross var(--ss,8s) ease-in infinite; opacity:0; z-index:0;
+  }
+  @keyframes shootAcross {
+    0%{opacity:0;transform:translateX(-100px) translateY(var(--ty,0px)) rotate(25deg);}
+    5%{opacity:0.9;}
+    25%{opacity:0;transform:translateX(120vw) translateY(calc(var(--ty,0px)+180px)) rotate(25deg);}
+    100%{opacity:0;}
+  }
+
+  .page {
+    position:relative; z-index:1;
+    max-width:650px; margin:0 auto;
+    padding:50px 22px 90px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+
+  /* ---- Header ---- */
+  .from-badge {
+    font-family:'Fira Code',monospace; font-size:0.72rem;
+    color:rgba(201,168,76,0.5); letter-spacing:2px;
+    border:1px solid rgba(201,168,76,0.12);
+    background:rgba(201,168,76,0.04);
+    padding:5px 16px; border-radius:20px; margin-bottom:22px;
+  }
+
+  .crown { font-size:4.5rem; display:block; text-align:center; margin-bottom:10px; filter:drop-shadow(0 0 24px #c9a84c); }
+
+  .main-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2rem,8vw,3.8rem); font-style:italic; font-weight:700;
+    text-align:center;
+    background:linear-gradient(135deg,#f0d080,#c9a84c,#e8a0b0,#f0d080);
+    background-size:200% 200%;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    animation:shimmer 5s ease-in-out infinite;
+    line-height:1.1;
+  }
+  @keyframes shimmer{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+  .main-sub {
+    font-family:'Playfair Display',serif; font-style:italic;
+    color:#e8a0b0; font-size:clamp(0.95rem,3vw,1.2rem);
+    text-align:center; margin-top:8px;
+  }
+  .main-sub span { color:#f0d080; }
+
+  .divider {
+    width:100%; display:flex; align-items:center; gap:12px; margin:26px 0;
+  }
+  .dline { flex:1; height:1px; background:linear-gradient(to right,transparent,#c9a84c,transparent); }
+  .dgem { color:#c9a84c; font-size:1rem; }
+
+  /* ---- Somya name ---- */
+  .somya-name {
+    text-align:center; margin:10px 0 6px;
+  }
+  .somya-text {
+    font-family:'Playfair Display',serif; font-style:italic;
+    font-size:clamp(3rem,12vw,5.5rem);
+    background:linear-gradient(135deg,#e8a0b0,#c9a84c,#c96080);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 20px rgba(232,160,176,0.3));
+    animation:nameglow 3s ease-in-out infinite; letter-spacing:3px;
+  }
+  @keyframes nameglow{
+    0%,100%{filter:drop-shadow(0 0 14px rgba(232,160,176,0.3));}
+    50%{filter:drop-shadow(0 0 32px rgba(232,160,176,0.7));}
+  }
+  .somya-sub { color:rgba(255,255,255,0.25); font-size:0.78rem; letter-spacing:5px; text-transform:uppercase; margin-top:6px; }
+
+  /* ---- Code block ---- */
+  .code-wrap {
+    width:100%; margin-top:4px;
+    background:rgba(8,4,12,0.9);
+    border:1px solid rgba(201,168,76,0.2);
+    border-radius:16px; padding:22px 26px;
+    box-shadow:0 16px 50px rgba(0,0,0,0.5);
+  }
+  .cbar { display:flex; gap:8px; align-items:center; margin-bottom:18px; }
+  .dot { width:12px; height:12px; border-radius:50%; }
+  .dr{background:#ff5f57;} .dy{background:#febc2e;} .dg{background:#28c840;}
+  .fname {
+    font-family:'Fira Code',monospace; font-size:0.7rem;
+    color:rgba(201,168,76,0.4); margin-left:auto;
+    background:rgba(201,168,76,0.05); padding:2px 9px; border-radius:5px;
+  }
+  pre {
+    font-family:'Fira Code',monospace;
+    font-size:clamp(0.68rem,1.9vw,0.82rem); line-height:2;
+    white-space:pre-wrap; word-break:break-word; min-height:380px;
+  }
+  .kw{color:#c792ea;} .fn{color:#82aaff;} .st{color:#c3e88d;}
+  .cm{color:rgba(255,255,255,0.25);font-style:italic;} .nu{color:#f78c6c;}
+  .va{color:#f0d080;} .op{color:#89ddff;} .ou{color:#e8a0b0;}
+  .cur{display:inline-block;width:8px;height:1em;background:#e8a0b0;vertical-align:text-bottom;animation:blink 0.85s step-end infinite;border-radius:1px;}
+
+  /* ---- Letter ---- */
+  .letter {
+    width:100%; margin-top:6px;
+    background:rgba(232,160,176,0.04);
+    border:1px solid rgba(232,160,176,0.15);
+    border-top:3px solid #c96080;
+    border-radius:16px; padding:30px 30px 26px;
+    position:relative;
+  }
+  .letter-emoji {
+    position:absolute; top:-18px; left:50%; transform:translateX(-50%);
+    font-size:2.2rem; filter:drop-shadow(0 4px 10px rgba(232,160,176,0.5));
+    animation:floatEmoji 3s ease-in-out infinite;
+  }
+  @keyframes floatEmoji{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-5px);}}
+
+  .letter-to { font-family:'Playfair Display',serif; font-style:italic; color:#f0d080; font-size:1.4rem; margin-bottom:18px; margin-top:8px; }
+
+  .lp { color:rgba(255,255,255,0.83); font-size:1.08rem; line-height:1.95; margin-bottom:14px; font-weight:300; }
+  .lp .pk { color:#e8a0b0; font-style:italic; }
+  .lp .gd { color:#f0d080; }
+
+  .sign { margin-top:20px; font-family:'Playfair Display',serif; font-style:italic; color:#c9a84c; font-size:1.2rem; }
+  .sign span { color:#e8a0b0; }
+
+  /* ---- Small cards ---- */
+  .cards { width:100%; display:flex; flex-direction:column; gap:12px; margin-top:6px; }
+
+  .card {
+    border-radius:14px; padding:17px 20px;
+    transition:transform 0.25s ease;
+  }
+  .card:hover { transform:translateY(-2px); }
+  .card.c1 { background:rgba(232,160,176,0.06); border:1px solid rgba(232,160,176,0.18); }
+  .card.c2 { background:rgba(201,168,76,0.05); border:1px solid rgba(201,168,76,0.15); }
+  .card.c3 { background:rgba(123,63,110,0.09); border:1px solid rgba(123,63,110,0.25); }
+  .card-ico { font-size:1.4rem; margin-bottom:7px; display:block; }
+  .card-txt { color:rgba(255,255,255,0.8); font-size:1.06rem; line-height:1.85; font-weight:300; }
+  .card-txt .pk { color:#e8a0b0; font-style:italic; }
+  .card-txt .gd { color:#f0d080; }
+
+  /* ---- Please card ---- */
+  .please {
+    width:100%; text-align:center;
+    background:linear-gradient(135deg,rgba(201,96,128,0.1),rgba(123,63,110,0.12));
+    border:1px solid rgba(232,160,176,0.25);
+    border-radius:18px; padding:28px 24px; margin-top:6px;
+  }
+  .please-ico { font-size:2.8rem; display:block; margin-bottom:10px; animation:wiggle 2s ease-in-out infinite; }
+  @keyframes wiggle{0%,100%{transform:rotate(-6deg);}50%{transform:rotate(6deg) scale(1.1);}}
+  .please-txt {
+    font-family:'Playfair Display',serif; font-style:italic;
+    font-size:clamp(1.2rem,5vw,1.65rem); color:white; line-height:1.6;
+  }
+  .please-txt .pk { color:#e8a0b0; }
+  .please-mini { color:rgba(255,255,255,0.35); font-size:0.88rem; margin-top:8px; font-style:italic; }
+
+  /* ---- Button ---- */
+  .btn-wrap { text-align:center; margin-top:32px; }
+  .btn {
+    background:linear-gradient(135deg,#c96080,#7b3f6e);
+    color:white; border:none; border-radius:50px;
+    padding:16px 44px; font-size:1.1rem;
+    font-family:'Playfair Display',serif; font-style:italic;
+    cursor:pointer; letter-spacing:0.3px;
+    box-shadow:0 6px 28px rgba(201,96,128,0.35);
+    transition:transform 0.3s,box-shadow 0.3s;
+    overflow:hidden; position:relative;
+  }
+  .btn:hover { transform:scale(1.06) translateY(-2px); box-shadow:0 12px 40px rgba(201,96,128,0.55); }
+
+  .confetti-piece {
+    position:fixed; pointer-events:none; z-index:9999;
+    animation:cfFall var(--d,1.4s) ease forwards;
+    font-size:var(--s,1.4rem);
+  }
+  @keyframes cfFall {
+    0%{opacity:1;transform:translate(0,0) rotate(0) scale(1);}
+    100%{opacity:0;transform:translate(var(--x,0px),var(--y,140px)) rotate(var(--r,360deg)) scale(0.2);}
+  }
+
+  .footer { margin-top:55px; text-align:center; color:rgba(255,255,255,0.16); font-size:0.78rem; line-height:2.2; }
+  .footer span { color:#e8a0b0; }
+  .footer code { font-family:'Fira Code',monospace; color:rgba(201,168,76,0.3); font-size:0.72rem; }
+
+  /* section fade in */
+  .s { opacity:0; transform:translateY(32px); transition:opacity 0.75s ease, transform 0.75s ease; }
+  .s.in { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ========== INTRO ========== -->
+<div id="intro">
+  <canvas id="intro-canvas"></canvas>
+  <div id="intro-inner">
+    <span id="intro-crown">👑</span>
+    <div id="intro-text"><span id="intro-typed"></span><span id="intro-cursor"></span></div>
+    <div id="intro-deco">
+      <div class="intro-dline"></div>
+      <span class="intro-dgem">✦</span>
+      <div class="intro-dline"></div>
+    </div>
+  </div>
+  <button id="intro-skip" onclick="skipIntro()">tap to skip ✦</button>
+</div>
+
+<!-- ========== MAIN ========== -->
+<div id="main">
+  <div class="stars" id="stars"></div>
+  <div id="petals"></div>
+  <div class="shoot" style="top:12%;--ty:70px;--ss:8s;animation-delay:1s;"></div>
+  <div class="shoot" style="top:38%;--ty:100px;--ss:12s;animation-delay:5s;"></div>
+
+  <div class="page">
+
+    <div class="from-badge">✦ from: asmit &nbsp;→&nbsp; to: somya ✦</div>
+
+    <div class="s">
+      <span class="crown">👑</span>
+      <h1 class="main-title">it's Python language,<br>me itself seeking forgiveness</h1>
+      <p class="main-sub">From <span>Asmit</span> to his betuaaa <span>Somya</span></p>
+    </div>
+
+    <div class="divider s"><div class="dline"></div><div class="dgem">❋</div><div class="dline"></div><div class="dgem">❋</div><div class="dline"></div></div>
+
+    <div class="somya-name s">
+      <div class="somya-text">Somya</div>
+      <div class="somya-sub">my everything · my princess · my person</div>
+    </div>
+
+    <!-- Code -->
+    <div class="code-wrap s" style="margin-top:28px;">
+      <div class="cbar">
+        <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+        <span class="fname">asmit_apology_to_somya.py</span>
+      </div>
+      <pre id="codeDisplay"><span class="cur"></span></pre>
+    </div>
+
+    <!-- Letter -->
+    <div class="letter s" style="margin-top:28px;">
+      <div class="letter-emoji">💌</div>
+      <div class="letter-to">Shonu,</div>
+      <p class="lp">Haan I know, I messed up aaj. Coding mein itna ghus gaya tha ki <span class="pk">tumhe bhool gaya</span>, aur that's the worst thing I could do.</p>
+      <p class="lp">Tum gusse mein hoti ho na toh mujhe genuinely bura lagta hai. Not because you're mad, but because <span class="gd">I actually caused it.</span></p>
+      <p class="lp">Sorry shonu. Sach mein. 🥺</p>
+      <div class="sign"><span>Asmit</span> 🌹</div>
+    </div>
+
+    <!-- Message cards -->
+    <div class="cards s">
+      <div class="card c1">
+        <span class="card-ico">🥺</span>
+        <div class="card-txt">Itna gussa mat karo na shonu. Pata hai I was wrong, coding band karke tumse baat karni chahiye thi. Aage se karunga, pakka.</div>
+      </div>
+      <div class="card c2">
+        <span class="card-ico">💻</span>
+        <div class="card-txt">Yeh jo surprise banaya hai <span class="gd">tumhare liye banaya hai</span>, kyunki tum deserve karti ho. Aur haan, Python ne bhi sorry bola tumhe 😅</div>
+      </div>
+      <div class="card c3">
+        <span class="card-ico">🫶</span>
+        <div class="card-txt">Tumse zyada important kuch nahi hai mere liye. Not the code, not the bugs, <span class="pk">nothing.</span> Bas tum.</div>
+      </div>
+    </div>
+
+    <!-- Please card -->
+    <div class="please s">
+      <span class="please-ico">🙏</span>
+      <div class="please-txt">"maan jaa <span class="pk">shonu</span> pleaseeee,<br>seekhunga tab na aise<br>surprises de paunga?" 🥺💕</div>
+      <div class="please-mini">yeh toh bas trailer hai, picture abhi baaki hai mere dost</div>
+    </div>
+
+    <!-- Button -->
+    <div class="btn-wrap s">
+      <button class="btn" onclick="burst(this)">💖 Maan jaa na Somya?</button>
+    </div>
+
+    <div class="footer s">
+      Made by <span>Asmit</span> with ☕ and a very sorry heart 🫶<br>
+      <code>git commit -m "sorry shonu, you're my everything"</code>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ===== INTRO PARTICLES =====
+(function(){
+  const canvas = document.getElementById('intro-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+
+  function randBetween(a,b){ return a+Math.random()*(b-a); }
+
+  // Sparkle particles
+  for(let i=0;i<80;i++){
+    particles.push({
+      x: Math.random()*1, y: Math.random()*1,
+      vx: randBetween(-0.0003,0.0003), vy: randBetween(-0.0005,-0.0001),
+      size: randBetween(1,3),
+      alpha: Math.random(),
+      dalpha: randBetween(0.005,0.015),
+      color: Math.random()>0.5 ? [232,160,176] : [201,168,76]
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      p.alpha += p.dalpha;
+      if(p.alpha>=1||p.alpha<=0){ p.dalpha*=-1; }
+      if(p.y<-0.05){ p.y=1.05; p.x=Math.random(); }
+      const [r,g,b]=p.color;
+      ctx.save();
+      ctx.globalAlpha = Math.max(0,Math.min(1,p.alpha*0.7));
+      ctx.fillStyle=`rgb(${r},${g},${b})`;
+      ctx.shadowColor=`rgb(${r},${g},${b})`;
+      ctx.shadowBlur=8;
+      ctx.beginPath();
+      ctx.arc(p.x*W, p.y*H, p.size, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // Floating hearts
+  const heartSyms = ['💖','💕','🌸','✨','💝','⭐'];
+  const introEl = document.getElementById('intro');
+  for(let i=0;i<10;i++){
+    const h = document.createElement('div');
+    h.className='intro-heart';
+    h.textContent = heartSyms[i%heartSyms.length];
+    h.style.cssText=`left:${10+Math.random()*80}%;bottom:${Math.random()*20}%;font-size:${0.8+Math.random()*1.2}rem;--hd:${3+Math.random()*5}s;--hr:${(Math.random()-0.5)*40}deg;animation-delay:${Math.random()*4}s;`;
+    introEl.appendChild(h);
+  }
+})();
+
+// ===== INTRO TYPING =====
+const introTyped = document.getElementById('intro-typed');
+const words = ["SUNOOOOO", "SOMYAAAAAA 👑"];
+let wi = 0, ci = 0, phase = 'type';
+let introTimer;
+
+function typeIntro() {
+  const word = words[wi];
+  if (phase === 'type') {
+    if (ci <= word.length) {
+      introTyped.textContent = words.slice(0,wi).join('\n') + (wi>0?'\n':'') + word.slice(0,ci);
+      ci++;
+      introTimer = setTimeout(typeIntro, ci === 1 ? 120 : 90);
+    } else {
+      wi++;
+      if (wi < words.length) {
+        ci = 0;
+        introTimer = setTimeout(typeIntro, 400);
+      } else {
+        // All words typed — wait then go to main
+        introTimer = setTimeout(goToMain, 1600);
+      }
+    }
+  }
+}
+
+function goToMain() {
+  const intro = document.getElementById('intro');
+  intro.classList.add('fade-out');
+  document.getElementById('main').classList.add('visible');
+  setTimeout(() => { intro.style.display = 'none'; startMain(); }, 800);
+}
+
+function skipIntro() {
+  clearTimeout(introTimer);
+  goToMain();
+}
+
+setTimeout(typeIntro, 500);
+
+// ===== MAIN SETUP =====
+function startMain() {
+  // Stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 140; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const sz = Math.random()*2.5+0.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${0.3+Math.random()*0.6};animation-delay:${Math.random()*7}s;`;
+    starsEl.appendChild(s);
+  }
+
+  // Petals
+  const pe = document.getElementById('petals');
+  const emojis = ['🌸','🌺','🌷','💮','🌼'];
+  for (let i=0; i<18; i++) {
+    const p = document.createElement('div');
+    p.className='petal';
+    p.textContent=emojis[i%emojis.length];
+    p.style.cssText=`left:${Math.random()*100}%;--fd:${7+Math.random()*9}s;animation-delay:${Math.random()*12}s;font-size:${0.7+Math.random()*0.8}rem;--px:${(Math.random()-0.5)*50}px;`;
+    pe.appendChild(p);
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('in'),i*60); });
+  }, {threshold:0.08});
+  document.querySelectorAll('.s').forEach(s=>obs.observe(s));
+
+  // Start typing code
+  setTimeout(startCode, 600);
+}
+
+// ===== CODE ANIMATION — looping green run → red crash =====
+const pre = document.getElementById('codeDisplay');
+
+// Colour helpers
+const K = s => `<span class="kw">${s}</span>`;
+const F = s => `<span class="fn">${s}</span>`;
+const V = s => `<span class="va">${s}</span>`;
+const S = s => `<span class="st">${s}</span>`;
+const C = s => `<span class="cm">${s}</span>`;
+const N = s => `<span class="nu">${s}</span>`;
+const O = s => `<span class="op">${s}</span>`;
+const G = s => `<span style="color:#28c840;font-weight:bold">${s}</span>`;  // green output
+const R = s => `<span style="color:#ff5f57;font-weight:bold">${s}</span>`;  // red error
+
+// The script lines (html display, plain text for typing)
+const codeLines = [
+  { h: `${K('def')} ${F('get_forgiveness')}(${V('asmit')}, ${V('somya')}):`, t: `def get_forgiveness(asmit, somya):` },
+  { h: `    ${C('# fix = forgiveness')}`, t: `    # fix = forgiveness` },
+  { h: `    fix ${O('=')} forgiveness`, t: `    fix = forgiveness` },
+  { h: `    ${K('if')} ${V('somya')}.is_angry:`, t: `    if somya.is_angry:` },
+  { h: `        ${K('raise')} ${F('HeartError')}(${S('"maan jaa somya 💕"')})`, t: `        raise HeartError("maan jaa somya 💕")` },
+  { h: `    ${K('return')} fix`, t: `    return fix` },
+  { h: ``, t: `` },
+  { h: `${V('asmit')}   ${O('=')} ${F('Asmit')}(${S('"love=inf"')})`, t: `asmit   = Asmit("love=inf")` },
+  { h: `${V('somya')}   ${O('=')} ${F('Somya')}(is_angry${O('=')}_True_)`, t: `somya   = Somya(is_angry=True)` },
+  { h: `${V('result')}  ${O('=')} ${F('get_forgiveness')}(${V('asmit')}, ${V('somya')})`, t: `result  = get_forgiveness(asmit, somya)` },
+];
+
+// Output lines shown after "running"
+const runLines = [
+  { h: G(`▶  Running asmit_apology_to_somya.py ...`), delay: 0 },
+  { h: G(`✔  Initialising Asmit... ok`), delay: 340 },
+  { h: G(`✔  Connecting to Somya... ok`), delay: 680 },
+  { h: G(`✔  fix = forgiveness ... loaded`), delay: 1020 },
+  { h: G(`✔  Calling get_forgiveness()...`), delay: 1360 },
+];
+
+// Error lines (crash)
+const errLines = [
+  { h: R(`Traceback (most recent call last):`), delay: 0 },
+  { h: R(`  File "asmit_apology_to_somya.py", line 10`), delay: 120 },
+  { h: R(`  result = get_forgiveness(asmit, somya)`), delay: 240 },
+  { h: R(`  File "asmit_apology_to_somya.py", line 4`), delay: 360 },
+  { h: R(`    raise HeartError("maan jaa somya 💕")`), delay: 480 },
+  { h: R(`HeartError: somya.is_angry = True  💔`), delay: 620 },
+  { h: ``, delay: 760 },
+  { h: R(`✘  REASON : Somya is NOT forgiving me yet`), delay: 860 },
+  { h: R(`✘  fix = forgiveness  →  UNDEFINED`), delay: 980 },
+  { h: ``, delay: 1100 },
+  { h: `<span style="color:#febc2e;font-weight:bold">↻  Retrying in 3s ...  (loop #<span id="loopNum">1</span>)</span>`, delay: 1200 },
+];
+
+let loopCount = 0;
+
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+async function typeLines(lines, baseDelay=28){
+  const displayed = [];
+  for(const line of lines){
+    let typed = '';
+    const chars = line.t ? line.t.split('') : [];
+    if(chars.length === 0){
+      displayed.push(line.h);
+      pre.innerHTML = displayed.join('\n') + '\n<span class="cur"></span>';
+      await sleep(15);
+      continue;
+    }
+    for(let i=0; i<chars.length; i++){
+      typed += chars[i];
+      // find matching html prefix up to this char count
+      const htmlSnip = line.h; // show full html when line complete
+      pre.innerHTML = displayed.join('\n') + (displayed.length?'\n':'') +
+        buildPartialHtml(line.h, line.t, i+1) +
+        '<span class="cur"></span>';
+      await sleep(baseDelay + (Math.random()*10|0));
+    }
+    displayed.push(line.h);
+    pre.innerHTML = displayed.join('\n') + '\n<span class="cur"></span>';
+    await sleep(110);
+  }
+  return displayed;
+}
+
+// Approximates partial html by stripping tags and counting plain chars
+function buildPartialHtml(html, plain, count){
+  // walk html, emit chars until we've emitted `count` visible chars
+  let visible = 0, out = '', inTag = false, tagBuf = '';
+  const openTags = [];
+  for(let i=0; i<html.length; i++){
+    const ch = html[i];
+    if(ch === '<'){ inTag = true; tagBuf = '<'; continue; }
+    if(inTag){
+      tagBuf += ch;
+      if(ch === '>'){
+        inTag = false;
+        const isClose = tagBuf.startsWith('</');
+        out += tagBuf;
+        if(!isClose) openTags.push(tagBuf.match(/<(\w+)/)?.[1]||'');
+        else openTags.pop();
+        tagBuf = '';
+      }
+      continue;
+    }
+    if(visible < count){
+      // handle html entity as one char
+      if(ch === '&'){
+        let ent = '&', j=i+1;
+        while(j<html.length && html[j]!==';') ent+=html[j++];
+        ent+=';'; i=j;
+        out += ent; visible++;
+      } else {
+        out += ch; visible++;
+      }
+    } else { break; }
+  }
+  // close any open tags
+  for(let k=openTags.length-1;k>=0;k--) if(openTags[k]) out+=`</${openTags[k]}>`;
+  return out;
+}
+
+async function showOutputLines(lines){
+  const displayed = [];
+  for(const line of lines){
+    await sleep(line.delay || 0);
+    displayed.push(line.h);
+    pre.innerHTML += line.h + '\n';
+  }
+}
+
+async function runLoop(){
+  while(true){
+    loopCount++;
+    pre.innerHTML = '';
+
+    // Phase 1: type the code (green tint on cursor)
+    const coded = await typeLines(codeLines, 30);
+    pre.innerHTML = coded.join('\n') + '\n';
+
+    await sleep(400);
+
+    // Phase 2: running output (green)
+    for(const line of runLines){
+      await sleep(line.delay || 300);
+      pre.innerHTML += line.h + '\n';
+    }
+
+    await sleep(600);
+
+    // Phase 3: crash (red)
+    for(const line of errLines){
+      await sleep(line.delay || 0);
+      pre.innerHTML += line.h + '\n';
+    }
+
+    // Update loop counter
+    const el = document.getElementById('loopNum');
+    if(el) el.textContent = loopCount;
+
+    await sleep(3200);
+  }
+}
+
+function startCode(){ runLoop(); }
+
+// ===== CONFETTI =====
+const syms=['💖','💕','✨','🌸','👑','🌹','💫','🎀','💝','⭐','🌟'];
+function burst(btn){
+  const r=btn.getBoundingClientRect();
+  const cx=r.left+r.width/2, cy=r.top+r.height/2;
+  function spawn(ox,oy,n){
+    for(let i=0;i<n;i++){
+      const el=document.createElement('div');
+      el.className='confetti-piece';
+      el.textContent=syms[Math.floor(Math.random()*syms.length)];
+      const a=Math.random()*Math.PI*2, d=90+Math.random()*200;
+      el.style.cssText=`left:${ox}px;top:${oy}px;--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d+90}px;--r:${Math.random()*700-350}deg;--d:${0.9+Math.random()*1.3}s;--s:${1+Math.random()*1.6}rem;animation-delay:${Math.random()*0.3}s;`;
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),2800);
+    }
+  }
+  spawn(cx,cy,50);
+  setTimeout(()=>spawn(cx+50,cy,22),380);
+  setTimeout(()=>spawn(cx-50,cy,22),700);
+
+  btn.innerHTML='💝 Somya ne maan liya! 🎉';
+  btn.style.background='linear-gradient(135deg,#28c840,#1a9e30)';
+  setTimeout(()=>{ btn.innerHTML='💖 Maan jaa na Somya?'; btn.style.background=''; },4000);
+}
+</script>
+</body>
+</html>
