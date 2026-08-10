@@ -78,7 +78,7 @@
   .page-dots span.now{ transform:scale(1.5); background:var(--gold); opacity:1; }
 
   #pager{ position:relative; z-index:10; }
-  .pg{ position:fixed; inset:0; z-index:10; display:flex; flex-direction:column; align-items:center; padding:56px 18px 90px; opacity:0; visibility:hidden; transition:opacity .5s ease; overflow-y:auto; }
+  .pg{ position:fixed; inset:0; z-index:10; display:flex; flex-direction:column; align-items:center; padding:56px 18px 90px; opacity:0; visibility:hidden; transition:opacity .5s ease; overflow-y:auto; -webkit-overflow-scrolling:touch; }
   /* margin:auto centers this block vertically when it fits, and simply
      collapses to 0 (never negative) when content is taller than the
      screen — so it falls back to top-aligned + scrollable automatically,
@@ -95,7 +95,7 @@
 
   .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; color:var(--gold-soft); text-transform:uppercase; margin:0 0 6px; }
   h1.title{ font-family:var(--font-display); font-weight:600; font-style:italic; font-size:clamp(28px,7vw,38px); line-height:1.1; margin:0 0 12px; }
-  p.body-text{ font-size:15.5px; line-height:1.65; margin:0 0 16px; }
+  p.body-text{ font-size:16px; line-height:1.8; margin:0 0 16px; }
   em.edit{ color:var(--rose); font-style:italic; opacity:.9; }
 
   /* ================= PAGE 1 — fireworks ================= */
@@ -200,7 +200,10 @@
 
   /* ================= PAGE 4 — ribbon finale ================= */
   .gift-card{ position:relative; background:var(--parchment); color:var(--ink-text); border-radius:4px; padding:52px 26px 32px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.55); max-width:420px; width:100%; overflow:hidden; transition:padding .4s ease; }
-  .gift-card.opened{ padding-top:34px; }
+  /* once the ribbon is cut we no longer need to clip anything, and a long
+     reveal message must be free to grow the card downward — overflow:hidden
+     was cutting the last lines off the bottom on shorter phone screens */
+  .gift-card.opened{ padding-top:34px; overflow:visible; }
   .gift-pretitle{ text-align:center; transition:opacity .3s ease, max-height .3s ease; overflow:hidden; }
   .gift-pretitle.hide{ opacity:0; max-height:0; margin:0; pointer-events:none; }
   .gift-pretitle .eyebrow{ color:var(--gold-soft); }
